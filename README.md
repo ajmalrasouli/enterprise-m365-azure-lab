@@ -20,7 +20,7 @@ The objective is to demonstrate practical skills in:
 
 ## Architecture
 
-[Architecture Diagram Here]
+![Architecture Diagram](diagrams/architecture-v1.png)
 
 ## Current Progress
 
