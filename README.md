@@ -2,7 +2,11 @@
 
 ## Project Overview
 
-This project simulates a small enterprise environment using Microsoft 365 and Azure services.
+## Business Scenario
+
+AjmalTech Ltd is a fictional company with approximately 100 employees.
+
+This lab demonstrates how Microsoft 365, Entra ID, Intune, Azure infrastructure, PowerShell automation, and Terraform can be used to manage a secure enterprise environment.
 
 The objective is to demonstrate practical skills in:
 
