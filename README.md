@@ -26,9 +26,9 @@ The objective is to demonstrate practical skills in:
 
 ### Phase 1
 - [x] Repository Created
-- [ ] Architecture Diagram
-- [ ] Entra ID Users
-- [ ] Entra ID Groups
+- [x] Architecture Diagram
+- [x] Entra ID Users
+- [x] Entra ID Groups
 - [ ] Conditional Access Policy
 
 ### Phase 2
