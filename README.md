@@ -29,12 +29,12 @@ The objective is to demonstrate practical skills in:
 - [x] Architecture Diagram
 - [x] Entra ID Users
 - [x] Entra ID Groups
-- [ ] Conditional Access Policy
+- [x] Conditional Access Policy
 
 ### Phase 2
-- [ ] Intune Device Enrollment
-- [ ] Compliance Policies
-- [ ] Application Deployment
+- [x] Intune Device Enrollment
+- [x] Compliance Policies
+- [x] Application Deployment
 
 ### Phase 3
 - [ ] Azure Infrastructure
