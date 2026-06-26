@@ -6,6 +6,7 @@ This document describes the deployment and configuration of the Ubuntu Linux vir
 
 The VM serves as a Linux administration environment for Azure CLI, Terraform, Infrastructure as Code (IaC), and future automation projects.
 
+> **Repository:** https://github.com/ajmalrasouli/enterprise-m365-azure-lab
 ---
 
 # Azure Infrastructure
@@ -20,6 +21,9 @@ The following Azure resources were deployed:
 - ✅ SSH Key Authentication
 - ✅ Auto Shutdown
 - ✅ Cost Optimized B1ls VM
+
+
+![Azure VM Created](../../screenshots/azure-vm-created.png)
 
 ## Commands Executed
 
@@ -84,6 +88,8 @@ hostnamectl
 uname -a
 ```
 
+![Ubuntu Version](../../screenshots/ubuntu-version.png)
+
 ### Update Ubuntu
 
 ```bash
@@ -115,6 +121,8 @@ sudo swapon /swapfile
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ```
 
+![Swap Enabled](../../screenshots/swap-enabled.png)
+
 Verify:
 
 ```bash
@@ -131,6 +139,9 @@ sudo ufw enable
 sudo ufw status verbose
 ```
 
+![UFW Status](../../screenshots/ufw-status.png)
+
+
 ### Install Fail2Ban
 
 ```bash
@@ -140,6 +151,8 @@ sudo systemctl start fail2ban
 sudo systemctl status fail2ban
 ```
 
+![Fail2Ban Status](../../screenshots/fail2ban-status.png)
+
 ### Verify Server
 
 ```bash
@@ -148,6 +161,8 @@ hostname
 df -h
 free -h
 ```
+
+![SSH Login](../../screenshots/ssh-login.png)
 
 ---
 
@@ -213,6 +228,9 @@ List locations:
 az account list-locations -o table
 ```
 
+![Azure CLI Login](../../screenshots/azure-cli-login.png)
+
+
 ---
 
 # Terraform
@@ -240,6 +258,9 @@ https://apt.releases.hashicorp.com \
 $(lsb_release -cs) main" \
 | sudo tee /etc/apt/sources.list.d/hashicorp.list
 ```
+
+![Terraform Version](../../screenshots/terraform-version.png)
+
 
 Update packages:
 
@@ -277,6 +298,22 @@ terraform version
 
 ---
 
+# Screenshots Included
+
+| Screenshot | Description |
+|------------|-------------|
+| azure-vm-created.png | Azure VM deployed successfully |
+| ssh-login.png | Successful SSH connection to the Linux VM |
+| ubuntu-version.png | Ubuntu Server 24.04 LTS verification |
+| swap-enabled.png | Persistent 1 GB swap configured |
+| ufw-status.png | UFW firewall enabled |
+| fail2ban-status.png | Fail2Ban service running |
+| azure-cli-login.png | Azure CLI authentication |
+| az-vm-list.png | Azure CLI listing virtual machines |
+| terraform-version.png | Terraform installation verified |
+
+---
+
 # Skills Demonstrated
 
 - Microsoft Azure
@@ -295,6 +332,25 @@ terraform version
 
 ---
 
+# Repository Structure
+
+enterprise-m365-azure-lab/
+│
+├── docs/
+│ ├── azure-vm-deployment.md
+│ ├── conditional-access.md
+│ ├── compliance-policies.md
+│ ├── intune-device-enrollment.md
+│ └── application-deployment.md
+│
+├── diagrams/
+├── screenshots/
+├── terraform/
+├── powershell/
+└── README.md
+
+---
+
 # Next Steps
 
 The next phase of the project includes:
@@ -305,3 +361,24 @@ The next phase of the project includes:
 - Automate deployments
 - Integrate GitHub Actions
 - Build PowerShell automation
+
+
+---
+
+# Project Status
+
+| Project Phase | Status |
+|---------------|--------|
+| Architecture Design | ✅ Complete |
+| Microsoft Entra ID | ✅ Complete |
+| Security Groups | ✅ Complete |
+| Conditional Access | ✅ Complete |
+| Microsoft Intune | ✅ Complete |
+| Application Deployment | ✅ Complete |
+| Azure Infrastructure | ✅ Complete |
+| Linux Administration | ✅ Complete |
+| Azure CLI | ✅ Complete |
+| Terraform Installation | ✅ Complete |
+| Terraform Infrastructure Deployment | 🚧 In Progress |
+| PowerShell Automation | 📋 Planned |
+| GitHub Actions | 📋 Planned |
