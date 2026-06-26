@@ -37,9 +37,9 @@ The objective is to demonstrate practical skills in:
 - [x] Application Deployment
 
 ### Phase 3
-- [ ] Azure Infrastructure
-- [ ] Virtual Network
-- [ ] Windows Server VM
+- [x] Azure Infrastructure
+- [x] Virtual Network
+- [ ] Linux (ubuntu 24.04)
 
 ### Phase 4
 - [ ] PowerShell Automation
@@ -55,3 +55,35 @@ The objective is to demonstrate practical skills in:
 - PowerShell
 - Terraform
 - Windows Server 2022
+
+
+## Project Progress
+
+### ✅ Completed
+
+- Architecture design
+- Microsoft Entra ID configuration
+- Security Groups
+- Conditional Access
+- Microsoft Intune
+- Application Deployment
+- Azure Resource Group
+- Virtual Network
+- Network Security Group
+- Ubuntu 24.04 Virtual Machine
+- Linux server hardening
+- Azure CLI
+- Terraform installation
+
+### 🚧 In Progress
+
+- Terraform Infrastructure as Code
+- PowerShell Automation
+
+### 📅 Planned
+
+- Automated VM deployment with Terraform
+- Azure Storage Account
+- Azure Key Vault
+- GitHub Actions CI/CD
+- Azure Monitor & Log Analytics
