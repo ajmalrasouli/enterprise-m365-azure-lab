@@ -3,3 +3,10 @@
 *.tfstate.*
 crash.log
 terraform.tfvars
+
+# Local SSH keys
+azure-generated-key.pub
+*.pem
+*.ppk
+
+terraform/azure-generated-key.pub

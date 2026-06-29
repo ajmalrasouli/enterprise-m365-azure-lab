@@ -1,12 +1,21 @@
-# Terraform Lab
+# Terraform
 
-Infrastructure as Code (IaC) project for deploying Azure resources using Terraform.
+This directory contains the Terraform Infrastructure as Code (IaC) configuration used to manage the Azure resources for the Enterprise M365 Azure Lab.
 
-## Components
+## Current Resources
 
-- Azure Resource Group
+- Resource Group
 - Virtual Network
+- Subnet
 - Network Security Group
-- Ubuntu Virtual Machine
-- Outputs
-- Variables
+- Public IP
+- Network Interface
+
+The Linux Virtual Machine will be managed after completing the project refactoring.
+
+## Useful Commands
+
+Initialize Terraform
+
+```bash
+terraform init

@@ -1,13 +1,6 @@
-resource "azurerm_resource_group" "rg" {
-  name     = var.resource_group_name
-  location = var.location
-
-  tags = {
-    Environment = "Lab"
-    Project     = "Enterprise-M365-Azure-Lab"
-    Owner       = "Ajmal"
-  }
-}
+#########################################################
+# Virtual Network
+#########################################################
 
 resource "azurerm_virtual_network" "vnet" {
   name                = "vnet-enterprise-lab"
@@ -22,6 +15,10 @@ resource "azurerm_virtual_network" "vnet" {
   }
 }
 
+#########################################################
+# Subnet
+#########################################################
+
 resource "azurerm_subnet" "default" {
   name                 = "default"
   resource_group_name  = azurerm_resource_group.rg.name
@@ -32,6 +29,9 @@ resource "azurerm_subnet" "default" {
   ]
 }
 
+#########################################################
+# Network Security Group
+#########################################################
 
 resource "azurerm_network_security_group" "nsg" {
   name                = "nsg-enterprise-lab"
@@ -45,6 +45,9 @@ resource "azurerm_network_security_group" "nsg" {
   }
 }
 
+#########################################################
+# Public IP
+#########################################################
 
 resource "azurerm_public_ip" "public_ip" {
   name                = "vm-enterprise-lab-ip"
@@ -63,6 +66,9 @@ resource "azurerm_public_ip" "public_ip" {
   }
 }
 
+#########################################################
+# Network Interface
+#########################################################
 
 resource "azurerm_network_interface" "nic" {
   name                = "vm-enterprise-lab859_z1"
