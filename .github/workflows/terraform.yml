@@ -47,15 +47,5 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
 
-      - name: Check SSH variable
-        run: |
-          if [ -z "$TF_VAR_ssh_public_key" ]; then
-            echo "SSH public key secret is NOT set"
-            exit 1
-          else
-            echo "SSH public key secret is set"
-          fi
-
-
       - name: Terraform Plan
         run: terraform plan -no-color
