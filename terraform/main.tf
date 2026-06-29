@@ -62,3 +62,23 @@ resource "azurerm_public_ip" "public_ip" {
     Owner       = "Ajmal"
   }
 }
+
+
+resource "azurerm_network_interface" "nic" {
+  name                = "vm-enterprise-lab859_z1"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  ip_configuration {
+    name                          = "ipconfig1"
+    subnet_id                     = azurerm_subnet.default.id
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = azurerm_public_ip.public_ip.id
+  }
+
+  tags = {
+    Environment = "Lab"
+    Project     = "Enterprise-M365-Azure-Lab"
+    Owner       = "Ajmal"
+  }
+}
