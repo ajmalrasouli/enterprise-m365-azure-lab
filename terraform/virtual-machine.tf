@@ -2,18 +2,65 @@
 # Azure Linux Virtual Machine
 #########################################################
 
-# The VM will be added after the Terraform project
-# has been fully refactored.
+resource "azurerm_linux_virtual_machine" "vm" {
 
-# Existing VM:
-#
-# Name: vm-enterprise-lab
-# Size: Standard_B1ls
-# Image: Ubuntu 24.04 LTS
-# Trusted Launch Enabled
+  name                = "vm-enterprise-lab"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.location
 
+  size = "Standard_B1ls"
 
-admin_ssh_key {
-  username   = "azureuser"
-  public_key = file(var.ssh_public_key_path)
+  admin_username = "azureuser"
+
+  network_interface_ids = [
+    azurerm_network_interface.nic.id
+  ]
+
+  disable_password_authentication = true
+
+  admin_ssh_key {
+    username   = "azureuser"
+    public_key = file("${path.module}/azure-generated-key.pub")
+  }
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "StandardSSD_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "ubuntu-24_04-lts"
+    sku       = "server"
+    version   = "latest"
+  }
+
+  zone = "1"
+
+  secure_boot_enabled = true
+  vtpm_enabled        = true
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  boot_diagnostics {}
+
+  additional_capabilities {
+    ultra_ssd_enabled   = false
+    hibernation_enabled = false
+  }
+
+  tags = {
+    Environment = "Lab"
+    Project     = "Enterprise-M365-Azure-Lab"
+    Owner       = "Ajmal"
+  }
+
+  lifecycle {
+    ignore_changes = [
+      admin_ssh_key,
+      source_image_reference,
+    ]
+  }
 }
