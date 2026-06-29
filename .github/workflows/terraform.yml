@@ -17,6 +17,9 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
 
+    env:
+      TF_VAR_ssh_private_key: ${{ secrets.TF_VAR_ssh_private_key }}    
+    
     defaults:
       run:
         working-directory: terraform
