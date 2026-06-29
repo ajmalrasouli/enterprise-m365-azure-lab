@@ -12,6 +12,7 @@
 # Image: Ubuntu 24.04 LTS
 # Trusted Launch Enabled
 
+
 admin_ssh_key {
   username   = "azureuser"
   public_key = file(var.ssh_public_key_path)
