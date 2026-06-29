@@ -396,6 +396,9 @@ The repository includes screenshots documenting each implementation stage.
 
 ✔ Documented every implementation step
 
+✔ Migrated Terraform state to an Azure Storage remote backend
+
+
 ---
 
 # Current Terraform Status
@@ -579,6 +582,71 @@ Detailed implementation guides are available throughout the repository.
 - Production Folder Structure
 
 ---
+
+# Remote Terraform Backend
+
+To align the project with enterprise Infrastructure as Code (IaC) practices, the Terraform state has been migrated from a local backend to an Azure Storage Account.
+
+Using a remote backend provides secure, centralized state management and enables future collaboration, CI/CD pipelines, and state locking.
+
+## Architecture
+
+```text
+Local Development
+        │
+terraform init
+terraform plan
+terraform apply
+        │
+        ▼
+Azure Storage Account
+        │
+        ▼
+Blob Container (tfstate)
+        │
+        ▼
+terraform.tfstate
+```
+
+## Azure Resources
+
+| Resource | Name |
+|----------|------|
+| Storage Account | stajmalterraform01 |
+| Blob Container | tfstate |
+| Backend | AzureRM |
+| Authentication | Azure AD |
+| Encryption | Microsoft Managed |
+| Access | Private |
+
+## Backend Configuration
+
+```hcl
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "rg-enterprise-lab"
+    storage_account_name = "stajmalterraform01"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
+
+    use_azuread_auth = true
+  }
+}
+```
+
+## Benefits
+
+- Centralized Terraform state
+- Enterprise-ready architecture
+- Secure Azure AD authentication
+- No local state dependency
+- Supports state locking
+- Ready for GitHub Actions
+- Foundation for collaborative Infrastructure as Code
+
+---
+
+
 
 ## Microsoft Cloud
 

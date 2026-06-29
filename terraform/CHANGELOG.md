@@ -80,3 +80,164 @@ Upcoming work:
 - Azure Monitor
 - PowerShell Automation
 - Azure Key Vault
+
+# Changelog
+
+All notable changes to this project are documented in this file.
+
+The format is based on Keep a Changelog, and this project follows Semantic Versioning where practical.
+
+---
+
+# [Unreleased]
+
+## Planned
+
+- GitHub Actions CI/CD
+- Terraform Modules
+- Azure Key Vault integration
+- Azure Monitor
+- Log Analytics Workspace
+- PowerShell Automation
+- Cost Management
+- Azure Policy
+- Azure Backup
+- Microsoft Defender for Cloud
+
+---
+
+# [1.3.0] - 2026-06-29
+
+## Added
+
+### Terraform Remote Backend
+
+- Created Azure Storage Account for Terraform state
+- Created private Azure Blob Storage container
+- Configured AzureRM backend
+- Migrated Terraform state from local storage to Azure Blob Storage
+- Enabled Azure AD authentication for backend access
+
+### Terraform
+
+- Added backend.tf
+- Added storage.tf
+- Added Azure Storage Account resource
+- Added Blob Container resource
+
+### Documentation
+
+- Updated README.md
+- Updated terraform-deployment.md
+- Added backend architecture
+- Added backend migration documentation
+- Added remote backend screenshots
+
+### Infrastructure
+
+Terraform now manages:
+
+- Resource Group
+- Virtual Network
+- Subnet
+- Network Security Group
+- Public IP
+- Network Interface
+- Ubuntu Linux Virtual Machine
+- Azure Storage Account
+- Blob Container
+
+---
+
+# [1.2.0] - 2026-06-29
+
+## Added
+
+### Terraform
+
+- Installed Terraform
+- Configured AzureRM Provider
+- Created modular Terraform configuration
+- Split Terraform configuration into logical files
+- Imported existing Azure infrastructure
+- Added variables
+- Added outputs
+- Validated imported resources
+
+### Azure Resources Imported
+
+- Resource Group
+- Virtual Network
+- Subnet
+- Network Security Group
+- Public IP
+- Network Interface
+- Ubuntu Linux Virtual Machine
+
+---
+
+# [1.1.0] - 2026-06-28
+
+## Added
+
+### Azure Infrastructure
+
+- Ubuntu Server 24.04 LTS
+- Virtual Network
+- Public IP
+- Network Security Group
+- SSH Key Authentication
+- Auto Shutdown
+
+### Linux Administration
+
+- Azure CLI
+- Terraform
+- Git
+- UFW Firewall
+- Fail2Ban
+- Persistent Swap
+
+---
+
+# [1.0.0] - 2026-06-27
+
+## Initial Release
+
+### Microsoft Entra ID
+
+- Tenant configuration
+- Administrative accounts
+- Security Groups
+
+### Microsoft Intune
+
+- Device Enrollment
+- Configuration Profiles
+- Compliance Policies
+
+### Security
+
+- Conditional Access
+- Multi-Factor Authentication (MFA)
+- Device Security Policies
+
+### Documentation
+
+- Project architecture
+- Azure deployment
+- Repository structure
+- Technical documentation
+- Screenshots
+
+---
+
+## Repository Milestones
+
+| Version | Milestone |
+|----------|-----------|
+| 1.0.0 | Enterprise M365 Azure Lab Created |
+| 1.1.0 | Azure Infrastructure & Linux Administration |
+| 1.2.0 | Terraform Infrastructure as Code |
+| 1.3.0 | Remote Terraform Backend |
+| Next | GitHub Actions CI/CD |
