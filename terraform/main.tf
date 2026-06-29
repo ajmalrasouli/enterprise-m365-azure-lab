@@ -44,3 +44,21 @@ resource "azurerm_network_security_group" "nsg" {
     Owner       = "Ajmal"
   }
 }
+
+
+resource "azurerm_public_ip" "public_ip" {
+  name                = "vm-enterprise-lab-ip"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  allocation_method = "Static"
+  sku               = "Standard"
+
+  zones = ["1"]
+
+  tags = {
+    Environment = "Lab"
+    Project     = "Enterprise-M365-Azure-Lab"
+    Owner       = "Ajmal"
+  }
+}
