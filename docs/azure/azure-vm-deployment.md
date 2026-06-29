@@ -382,3 +382,21 @@ The next phase of the project includes:
 | Terraform Infrastructure Deployment | 🚧 In Progress |
 | PowerShell Automation | 📋 Planned |
 | GitHub Actions | 📋 Planned |
+
+# Infrastructure as Code Migration
+
+The manually deployed Azure infrastructure was successfully migrated into Terraform without recreating any resources.
+
+Terraform now manages:
+
+- Resource Group
+- Virtual Network
+- Subnet
+- Network Security Group
+- Public IP
+- Network Interface
+- Ubuntu Linux Virtual Machine
+
+The migration process included importing each Azure resource into Terraform state and validating that the Terraform configuration exactly matched the deployed infrastructure.
+
+Final validation confirmed:
