@@ -4,7 +4,7 @@
 
 resource "azurerm_storage_account" "tfstate" {
   name                = "stajmalterraform01"
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = module.resource_group.name
   location            = var.location
 
   account_tier             = "Standard"

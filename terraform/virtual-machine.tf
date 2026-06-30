@@ -5,7 +5,7 @@
 resource "azurerm_linux_virtual_machine" "vm" {
 
   name                = "vm-enterprise-lab"
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = module.resource_group.name
   location            = var.location
 
   size = "Standard_B1ls"

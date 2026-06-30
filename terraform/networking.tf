@@ -5,7 +5,7 @@
 resource "azurerm_virtual_network" "vnet" {
   name                = "vnet-enterprise-lab"
   location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = module.resource_group.name
   address_space       = ["10.0.0.0/16"]
 
   tags = {
@@ -21,7 +21,7 @@ resource "azurerm_virtual_network" "vnet" {
 
 resource "azurerm_subnet" "default" {
   name                 = "default"
-  resource_group_name  = azurerm_resource_group.rg.name
+  resource_group_name  = module.resource_group.name
   virtual_network_name = azurerm_virtual_network.vnet.name
 
   address_prefixes = [
@@ -36,7 +36,7 @@ resource "azurerm_subnet" "default" {
 resource "azurerm_network_security_group" "nsg" {
   name                = "nsg-enterprise-lab"
   location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = module.resource_group.name
 
   tags = {
     Environment = "Lab"
@@ -52,7 +52,7 @@ resource "azurerm_network_security_group" "nsg" {
 resource "azurerm_public_ip" "public_ip" {
   name                = "vm-enterprise-lab-ip"
   location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = module.resource_group.name
 
   allocation_method = "Static"
   sku               = "Standard"
@@ -73,7 +73,7 @@ resource "azurerm_public_ip" "public_ip" {
 resource "azurerm_network_interface" "nic" {
   name                = "vm-enterprise-lab859_z1"
   location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = module.resource_group.name
 
   ip_configuration {
     name                          = "ipconfig1"
