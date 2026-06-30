@@ -552,6 +552,63 @@ This project provided practical experience with:
 - Cloud networking
 - Linux administration
 
+## Lessons Learned – Terraform State Management
+
+During the Storage Module implementation, I encountered an important Terraform state management scenario.
+
+### Problem
+
+Initially, the Terraform backend storage account (`stajmalterraform01`) and the `tfstate` container were managed as Terraform resources. After refactoring the project to use a reusable Storage module, I removed those resources from the Terraform configuration because the backend infrastructure should not be managed by the same Terraform project that depends on it.
+
+When I ran:
+
+```bash
+terraform plan
+```
+
+Terraform reported:
+
+```text
+Plan: 1 to add, 0 to change, 2 to destroy.
+```
+
+Terraform planned to destroy:
+
+- `azurerm_storage_account.tfstate`
+- `azurerm_storage_container.tfstate`
+
+This happened because the resources still existed in the Terraform state file even though they had been removed from the configuration.
+
+### Solution
+
+Instead of allowing Terraform to delete the Azure resources, I removed them from the Terraform state using:
+
+```bash
+terraform state rm azurerm_storage_container.tfstate
+terraform state rm azurerm_storage_account.tfstate
+```
+
+This removed the resources from Terraform's state while leaving the actual Azure Storage Account and Blob Container untouched.
+
+After running the commands, the execution plan became:
+
+```text
+Plan: 1 to add, 0 to change, 0 to destroy.
+```
+
+Terraform then created only the new Storage Account managed by the reusable Storage module.
+
+### Key Takeaways
+
+- Terraform state determines what Terraform manages.
+- Removing a resource from the configuration does **not** automatically remove it from the state.
+- If a resource is removed from the configuration but remains in the state, Terraform assumes it should be destroyed.
+- `terraform state rm` removes a resource from Terraform's state **without deleting the actual Azure resource**.
+- Backend infrastructure (such as the Terraform state storage account) should be managed separately from the infrastructure that depends on it.
+- Understanding Terraform state management is an essential operational skill for Infrastructure as Code and DevOps engineers.
+
+
+
 # Terraform Project Structure
 
 The Terraform configuration has been organised following enterprise Infrastructure as Code practices.

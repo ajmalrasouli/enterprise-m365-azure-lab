@@ -25,3 +25,8 @@ variable "tags" {
     Owner       = "Ajmal"
   }
 }
+
+variable "storage_account_name" {
+  description = "Storage Account Name"
+  type        = string
+}

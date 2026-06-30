@@ -1,21 +1,17 @@
 #########################################################
-# Terraform Backend Storage Account
+# Storage Module
 #########################################################
 
-resource "azurerm_storage_account" "tfstate" {
-  name                = "stajmalterraform01"
+module "storage" {
+  source = "./modules/storage"
+
   resource_group_name = module.resource_group.name
   location            = var.location
 
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+  storage_account_name = var.storage_account_name
 
-  min_tls_version = "TLS1_2"
+  account_tier     = "Standard"
+  replication_type = "LRS"
 
   tags = var.tags
-}
-resource "azurerm_storage_container" "tfstate" {
-  name                  = "tfstate"
-  storage_account_id    = azurerm_storage_account.tfstate.id
-  container_access_type = "private"
 }
