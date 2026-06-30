@@ -4,22 +4,32 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "terraform/**"
+      - ".github/workflows/terraform.yml"
 
   pull_request:
     branches:
       - main
+    paths:
+      - "terraform/**"
+      - ".github/workflows/terraform.yml"
 
 permissions:
   id-token: write
   contents: read
+
+concurrency:
+  group: terraform-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
 
     env:
-      TF_VAR_ssh_public_key: ${{ secrets.TF_VAR_ssh_public_key }}    
-    
+      TF_VAR_ssh_public_key: ${{ secrets.TF_VAR_ssh_public_key }}
+
     defaults:
       run:
         working-directory: terraform
@@ -30,6 +40,8 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.13.0
 
       - name: Azure Login
         uses: azure/login@v2
@@ -39,7 +51,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Terraform Format Check
-        run: terraform fmt -check
+        run: terraform fmt -check -recursive
 
       - name: Terraform Init
         run: terraform init
@@ -48,4 +60,10 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -lock-timeout=5m -no-color
+        run: terraform plan -lock-timeout=30s -out=tfplan -no-color
+
+      - name: Upload Terraform Plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan
+          path: terraform/tfplan
