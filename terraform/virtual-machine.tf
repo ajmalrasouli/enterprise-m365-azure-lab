@@ -13,7 +13,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   admin_username = "azureuser"
 
   network_interface_ids = [
-    azurerm_network_interface.nic.id
+    module.networking.nic_id
   ]
 
   disable_password_authentication = true

@@ -253,3 +253,18 @@ Terraform now manages:
 - Updated dependent resources to reference module outputs.
 - Moved Terraform state using `terraform state mv`.
 - Verified no infrastructure changes after refactoring.
+
+## Refactored Networking into Terraform Module
+
+### Added
+- Created reusable networking module.
+
+### Changed
+- Moved Virtual Network into module
+- Moved Subnet into module
+- Moved Network Security Group into module
+- Moved Public IP into module
+- Moved Network Interface into module
+- Updated outputs
+- Migrated Terraform state using `terraform state mv`
+- Verified no infrastructure changes

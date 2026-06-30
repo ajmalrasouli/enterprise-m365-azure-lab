@@ -3,23 +3,23 @@ output "resource_group_name" {
 }
 
 output "virtual_network_name" {
-  value = azurerm_virtual_network.vnet.name
+  value = module.networking.vnet_name
 }
 
 output "subnet_name" {
-  value = azurerm_subnet.default.name
+  value = module.networking.subnet_name
 }
 
 output "network_security_group" {
-  value = azurerm_network_security_group.nsg.name
-}
-
-output "public_ip_name" {
-  value = azurerm_public_ip.public_ip.name
+  value = module.networking.nsg_name
 }
 
 output "network_interface_name" {
-  value = azurerm_network_interface.nic.name
+  value = module.networking.nic_name
+}
+
+output "public_ip_name" {
+  value = module.networking.public_ip_name
 }
 
 output "subscription" {
