@@ -131,9 +131,11 @@ enterprise-m365-azure-lab/
 │
 ├── docs/
 │   ├── architecture.md
+│   ├── lessons-learned.md
 │   └── azure/
 │       ├── azure-vm-deployment.md
-│       └── terraform-deployment.md
+│       ├── terraform-deployment.md
+│       └── terraform-state-management.md
 │
 ├── screenshots/
 │
@@ -143,10 +145,11 @@ enterprise-m365-azure-lab/
 │   ├── versions.tf
 │   ├── variables.tf
 │   ├── outputs.tf
+│   ├── terraform.tfvars
 │   ├── resource-group.tf
 │   ├── networking.tf
 │   ├── storage.tf
-│   ├── virtual-machine.tf
+│   ├── compute.tf
 │   │
 │   └── modules/
 │       ├── resource-group/
@@ -154,11 +157,22 @@ enterprise-m365-azure-lab/
 │       │   ├── variables.tf
 │       │   └── outputs.tf
 │       │
-│       └── networking/
+│       ├── networking/
+│       │   ├── main.tf
+│       │   ├── variables.tf
+│       │   └── outputs.tf
+│       │
+│       ├── storage/
+│       │   ├── main.tf
+│       │   ├── variables.tf
+│       │   └── outputs.tf
+│       │
+│       └── compute/
 │           ├── main.tf
 │           ├── variables.tf
 │           └── outputs.tf
 │
+├── .gitignore
 ├── CHANGELOG.md
 ├── LICENSE
 └── README.md

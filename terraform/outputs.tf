@@ -37,3 +37,15 @@ output "storage_account_id" {
 output "storage_blob_endpoint" {
   value = module.storage.primary_blob_endpoint
 }
+
+output "virtual_machine_name" {
+  value = module.compute.vm_name
+}
+
+output "virtual_machine_id" {
+  value = module.compute.vm_id
+}
+
+output "vm_managed_identity_principal_id" {
+  value = module.compute.principal_id
+}
