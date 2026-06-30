@@ -241,3 +241,15 @@ Terraform now manages:
 | 1.2.0 | Terraform Infrastructure as Code |
 | 1.3.0 | Remote Terraform Backend |
 | Next | GitHub Actions CI/CD |
+
+
+## Refactored Infrastructure into Terraform Modules
+
+### Added
+- Created reusable Resource Group Terraform module.
+
+### Changed
+- Replaced root Resource Group resource with a module.
+- Updated dependent resources to reference module outputs.
+- Moved Terraform state using `terraform state mv`.
+- Verified no infrastructure changes after refactoring.

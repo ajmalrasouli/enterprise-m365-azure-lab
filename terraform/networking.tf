@@ -8,11 +8,8 @@ resource "azurerm_virtual_network" "vnet" {
   resource_group_name = module.resource_group.name
   address_space       = ["10.0.0.0/16"]
 
-  tags = {
-    Environment = "Lab"
-    Project     = "Enterprise-M365-Azure-Lab"
-    Owner       = "Ajmal"
-  }
+  tags = var.tags
+
 }
 
 #########################################################
@@ -38,11 +35,7 @@ resource "azurerm_network_security_group" "nsg" {
   location            = var.location
   resource_group_name = module.resource_group.name
 
-  tags = {
-    Environment = "Lab"
-    Project     = "Enterprise-M365-Azure-Lab"
-    Owner       = "Ajmal"
-  }
+  tags = var.tags
 }
 
 #########################################################
@@ -59,11 +52,7 @@ resource "azurerm_public_ip" "public_ip" {
 
   zones = ["1"]
 
-  tags = {
-    Environment = "Lab"
-    Project     = "Enterprise-M365-Azure-Lab"
-    Owner       = "Ajmal"
-  }
+  tags = var.tags
 }
 
 #########################################################
@@ -82,9 +71,6 @@ resource "azurerm_network_interface" "nic" {
     public_ip_address_id          = azurerm_public_ip.public_ip.id
   }
 
-  tags = {
-    Environment = "Lab"
-    Project     = "Enterprise-M365-Azure-Lab"
-    Owner       = "Ajmal"
-  }
+  tags = var.tags
+
 }

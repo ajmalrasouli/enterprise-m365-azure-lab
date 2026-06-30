@@ -12,13 +12,8 @@ resource "azurerm_storage_account" "tfstate" {
 
   min_tls_version = "TLS1_2"
 
-  tags = {
-    Environment = "Lab"
-    Project     = "Enterprise-M365-Azure-Lab"
-    Owner       = "Ajmal"
-  }
+  tags = var.tags
 }
-
 resource "azurerm_storage_container" "tfstate" {
   name                  = "tfstate"
   storage_account_id    = azurerm_storage_account.tfstate.id

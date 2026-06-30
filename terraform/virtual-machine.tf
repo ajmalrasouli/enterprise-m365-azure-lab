@@ -52,11 +52,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
     hibernation_enabled = false
   }
 
-  tags = {
-    Environment = "Lab"
-    Project     = "Enterprise-M365-Azure-Lab"
-    Owner       = "Ajmal"
-  }
+  tags = var.tags
 
   lifecycle {
     ignore_changes = [
