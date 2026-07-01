@@ -75,8 +75,8 @@ The project aims to demonstrate practical experience with:
 | Terraform Resource Group Module | ✅ Complete |
 | Terraform Networking Module | ✅ Complete |
 | Shared Terraform Variables | ✅ Complete |
-| Storage Module | 🚧 In Progress |
-| Compute Module | 🚧 Planned |
+| Storage Module | ✅ Complete |
+| Compute Module | ✅ Complete |
 | Documentation | 🚧 Ongoing |
 
 ---
