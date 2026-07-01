@@ -623,6 +623,54 @@ Terraform then created only the new Storage Account managed by the reusable Stor
 - Understanding Terraform state management is an essential operational skill for Infrastructure as Code and DevOps engineers.
 
 
+## GitHub Actions and Terraform Variables
+
+### Problem
+
+The GitHub Actions workflow stalled during `terraform plan` and appeared to hang while acquiring the remote state lock.
+
+The workflow output showed:
+
+```text
+var.storage_account_name
+  Storage Account Name
+```
+
+### Root Cause
+
+The required variable `storage_account_name` was stored locally in `terraform.tfvars`.
+
+Since `terraform.tfvars` is excluded from source control (`*.tfvars` in `.gitignore`), GitHub Actions did not receive this value.
+
+Terraform therefore prompted for the missing variable, which caused the non-interactive workflow to wait indefinitely.
+
+### Solution
+
+Created a GitHub Repository Variable:
+
+```
+
+TF_VAR_storage_account_name = ajmaltechlabstore01
+
+```
+
+and referenced it in the workflow:
+
+```yaml
+env:
+  TF_VAR_storage_account_name: ${{ vars.TF_VAR_storage_account_name }}
+```
+
+### Lesson Learned
+
+Do not rely on `terraform.tfvars` in CI/CD pipelines.
+
+Use:
+
+- GitHub Repository Variables for non-sensitive values.
+- GitHub Secrets for sensitive values.
+
+
 
 # Terraform Project Structure
 
