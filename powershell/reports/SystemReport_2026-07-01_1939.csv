@@ -1,0 +1,2 @@
+"ComputerName","Manufacturer","Model","CPU","Cores","RAM_GB","OperatingSystem","Version","LastBoot","IPv4","Disk_C_GB","Disk_C_Free_GB"
+"HP255G7","HP","HP 255 G7 Notebook PC","AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx  ","4","21.95","Microsoft Windows 11 Education","10.0.26200","28/06/2026 20:11:03","192.168.56.1, 172.17.0.1, 192.168.1.56, 127.0.0.1","234.24","10.17"

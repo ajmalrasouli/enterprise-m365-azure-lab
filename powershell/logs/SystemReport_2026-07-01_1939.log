@@ -1,0 +1,47 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260701193922
+Username: HP255G7\Personal
+RunAs User: HP255G7\Personal
+Configuration Name: 
+Machine: HP255G7 (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 12576
+PSVersion: 5.1.26100.8737
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8737
+BuildVersion: 10.0.26100.8737
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is ..\logs\SystemReport_2026-07-01_1939.log
+
+Collecting system information...
+
+
+
+ComputerName    : HP255G7
+Manufacturer    : HP
+Model           : HP 255 G7 Notebook PC
+CPU             : AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx
+Cores           : 4
+RAM_GB          : 21.95
+OperatingSystem : Microsoft Windows 11 Education
+Version         : 10.0.26200
+LastBoot        : 28/06/2026 20:11:03
+IPv4            : 192.168.56.1, 172.17.0.1, 192.168.1.56, 127.0.0.1
+Disk_C_GB       : 234.24
+Disk_C_Free_GB  : 10.17
+
+
+
+
+Report saved to:
+..\reports\SystemReport_2026-07-01_1939.csv
+
+**********************
+Windows PowerShell transcript end
+End time: 20260701193928
+**********************
