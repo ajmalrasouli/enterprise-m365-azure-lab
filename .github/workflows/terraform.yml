@@ -18,15 +18,21 @@ concurrency:
 
 jobs:
   terraform:
+    name: Terraform
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
-    env:
-      TF_VAR_ssh_public_key: ${{ secrets.TF_VAR_ssh_public_key }}
 
     defaults:
       run:
         working-directory: terraform
+
+    env:
+      TF_VAR_ssh_public_key: ${{ secrets.TF_VAR_ssh_public_key }}
+
+      ARM_USE_OIDC: true
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     steps:
       - name: Checkout Repository
@@ -44,10 +50,18 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      - name: Terraform Version
+        run: terraform version
+
       - name: Terraform Format Check
         run: terraform fmt -check -recursive
 
       - name: Terraform Init
+        env:
+          ARM_USE_OIDC: true
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         run: terraform init
 
       - name: Terraform Validate
@@ -55,16 +69,11 @@ jobs:
 
       - name: Terraform Plan
         env:
-          TF_LOG: DEBUG
-          TF_LOG_PATH: terraform-debug.log
-        run: terraform plan -lock-timeout=30s -out=tfplan -no-color
-
-      - name: Upload Terraform Debug Log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-        name: terraform-debug-log
-        path: terraform/terraform-debug.log
+          ARM_USE_OIDC: true
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        run: terraform plan -lock-timeout=20s -out=tfplan -no-color
 
       - name: Upload Terraform Plan
         if: success()
@@ -72,3 +81,10 @@ jobs:
         with:
           name: terraform-plan
           path: terraform/tfplan
+
+      - name: Upload Terraform Debug Log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-debug-log
+          path: terraform/terraform-debug.log
