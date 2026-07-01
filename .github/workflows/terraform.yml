@@ -28,6 +28,7 @@ jobs:
 
     env:
       TF_VAR_ssh_public_key: ${{ secrets.TF_VAR_ssh_public_key }}
+      TF_VAR_storage_account_name: ${{ vars.TF_VAR_storage_account_name }}
 
       ARM_USE_OIDC: true
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
