@@ -35,8 +35,8 @@ powershell/
 | Lesson | Description | Status |
 |---------|-------------|:------:|
 | Lesson 1 | System Information Report | ✅ |
-| Lesson 2 | File & Folder Automation | ⏳ |
-| Lesson 3 | CSV Automation | ⏳ |
+| Lesson 2 | Enterprise Backup Utility | ✅ |
+| Lesson 3 | Log Cleanup Automation | ⏳ |
 | Lesson 4 | Azure Automation | ⏳ |
 | Lesson 5 | Microsoft Graph Automation | ⏳ |
 

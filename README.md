@@ -1392,11 +1392,11 @@ enterprise-m365-azure-lab/
 - ✅ GitHub Variables & Secrets
 
 ### Phase 7 – PowerShell Automation
-- ✅ Lesson 1 – System Information Report
-- ⏳ File & Folder Automation
+- ✅ System Information Report
+- ✅ Enterprise Backup Utility
+- ⏳ Log Cleanup Automation
 - ⏳ Azure Automation
-- ⏳ Microsoft 365 Automation
-- ⏳ Reporting
+- ⏳ Microsoft Graph Automation
 
 ## Recent Lessons Learned
 

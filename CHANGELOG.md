@@ -268,3 +268,17 @@ Terraform now manages:
 - Updated outputs
 - Migrated Terraform state using `terraform state mv`
 - Verified no infrastructure changes
+
+
+## [Phase 7] - PowerShell Automation
+
+### Added
+
+- Created `Get-SystemReport.ps1` for collecting hardware and operating system information.
+- Created `Backup-Folder.ps1` to automate folder backups.
+- Added timestamped backup folders.
+- Added transcript logging.
+- Added progress reporting with `Write-Progress`.
+- Added backup verification.
+- Added execution time reporting.
+- Refactored the backup utility into reusable PowerShell functions.

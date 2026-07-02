@@ -21,7 +21,7 @@ operation in a log file.
 Ajmal Rasouli
 
 .VERSION
-2.1
+3.0
 #>
 
 #---------------------------------------------------------
@@ -43,35 +43,41 @@ Start-Transcript -Path $LogFile
 
 $Stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 
-try {
+#---------------------------------------------------------
+# Functions
+#---------------------------------------------------------
+
+function Initialize-Backup {
 
     Write-Host ""
     Write-Host "===================================" -ForegroundColor Cyan
-    Write-Host " Enterprise Backup Utility v2.1"
+    Write-Host " Enterprise Backup Utility v3.0"
     Write-Host "===================================" -ForegroundColor Cyan
     Write-Host ""
 
     Write-Host "Scanning source folder..." -ForegroundColor Yellow
+}
 
-    $SourceFiles = Get-ChildItem `
+function Get-BackupStatistics {
+
+    $script:SourceFiles = Get-ChildItem `
         -Path $Source `
         -File `
         -Recurse
 
-    $SourceFolders = Get-ChildItem `
+    $script:SourceFolders = Get-ChildItem `
         -Path $Source `
         -Directory `
         -Recurse
 
-    $TotalFiles = $SourceFiles.Count
+    $script:TotalFiles = $SourceFiles.Count
 
     Write-Host "Files found   : $TotalFiles"
     Write-Host "Folders found : $($SourceFolders.Count)"
     Write-Host ""
+}
 
-    #---------------------------------------------------------
-    # Copy Files
-    #---------------------------------------------------------
+function Copy-BackupFiles {
 
     $Counter = 0
 
@@ -104,48 +110,46 @@ try {
             -Path $File.FullName `
             -Destination $DestinationFile `
             -Force
-
     }
 
     Write-Progress `
         -Activity "Backing up files" `
         -Completed
+}
 
-    #---------------------------------------------------------
-    # Verification
-    #---------------------------------------------------------
+function Test-Backup {
 
-    $BackupFiles = Get-ChildItem `
+    $script:BackupFiles = Get-ChildItem `
         -Path $BackupFolder `
         -File `
         -Recurse
 
-    $BackupCount = $BackupFiles.Count
+    $script:BackupCount = $BackupFiles.Count
 
     if ($BackupCount -eq $TotalFiles) {
-        $Verification = "Passed"
+
+        $script:Verification = "Passed"
+
     }
     else {
-        $Verification = "Failed"
-    }
 
-    #---------------------------------------------------------
-    # Statistics
-    #---------------------------------------------------------
+        $script:Verification = "Failed"
+
+    }
 
     $Stopwatch.Stop()
 
-    $Duration = $Stopwatch.Elapsed
+    $script:Duration = $Stopwatch.Elapsed
 
     $SourceSize = ($SourceFiles | Measure-Object Length -Sum).Sum
 
-    $SourceSizeMB = [Math]::Round($SourceSize / 1MB, 2)
+    $script:SourceSizeMB = [Math]::Round($SourceSize / 1MB,2)
+}
 
-    #---------------------------------------------------------
-    # Summary
-    #---------------------------------------------------------
+function Write-BackupSummary {
 
     Write-Host ""
+
     Write-Host "===================================" -ForegroundColor Cyan
     Write-Host " Backup Summary"
     Write-Host "===================================" -ForegroundColor Cyan
@@ -162,11 +166,32 @@ try {
     Write-Host ""
 
     if ($Verification -eq "Passed") {
+
         Write-Host "Backup completed successfully." -ForegroundColor Green
+
     }
     else {
+
         Write-Host "Backup completed but verification failed." -ForegroundColor Yellow
+
     }
+}
+
+#---------------------------------------------------------
+# Main
+#---------------------------------------------------------
+
+try {
+
+    Initialize-Backup
+
+    Get-BackupStatistics
+
+    Copy-BackupFiles
+
+    Test-Backup
+
+    Write-BackupSummary
 
 }
 catch {
