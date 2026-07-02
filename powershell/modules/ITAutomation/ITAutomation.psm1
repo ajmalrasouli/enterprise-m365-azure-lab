@@ -1,11 +1,12 @@
-function Get-Hello {
-    Write-Host "Hello from ITAutomation!" -ForegroundColor Cyan
+# Load all public functions
+Get-ChildItem "$PSScriptRoot\Public\*.ps1" | ForEach-Object {
+    . $_.FullName
 }
 
-function Get-DateTime {
-    Get-Date
+# Load all private functions
+Get-ChildItem "$PSScriptRoot\Private\*.ps1" | ForEach-Object {
+    . $_.FullName
 }
 
-function Get-PCName {
-    $env:COMPUTERNAME
-}
+# Export only public functions
+Export-ModuleMember -Function *
