@@ -1,151 +1,52 @@
-## Project Overview
+# PowerShell Automation
 
-This repository demonstrates the design, deployment, automation, and management of enterprise cloud infrastructure using Infrastructure as Code (IaC) and scripting.
+## Overview
 
-The project focuses on building production-style skills across Microsoft Azure, Terraform, GitHub Actions, and PowerShell automation.
+This folder contains reusable PowerShell automation scripts developed as part of the Enterprise M365 Azure Lab project.
 
-### Technologies
+The scripts demonstrate enterprise scripting practices including:
 
-- Microsoft Azure
-- Terraform
-- GitHub Actions
-- PowerShell
-- Azure CLI
-- Git
-- GitHub
-
-## Features
-
-### Infrastructure as Code
-
-- Azure Resource Group
-- Virtual Network
-- Subnet
-- Network Security Group
-- Public IP Address
-- Linux Virtual Machine
-- Azure Storage Account
-- Remote Terraform State
-
-### Terraform
-
-- Modular architecture
-- Remote backend
-- State management
-- Reusable modules
-- Outputs and variables
-- Enterprise repository structure
-
-### CI/CD
-
-- GitHub Actions
-- OIDC authentication
-- Terraform validation
-- Terraform formatting checks
-- Terraform plan generation
-- Plan artifact upload
-
-### PowerShell Automation
-
-- System Information Reporting
 - Logging
-- CSV reporting
 - Error handling
-- Enterprise script structure
+- Parameter validation
+- CSV reporting
+- PowerShell objects
+- Azure automation
+- Microsoft 365 automation
 
-## Repository Structure
+---
+
+## Folder Structure
 
 ```text
-enterprise-m365-azure-lab/
+powershell/
 
-├── .github/
-│   └── workflows/
-│       └── terraform.yml
-│
-├── docs/
-│   ├── architecture.md
-│   ├── lessons-learned.md
-│   └── azure/
-│
-├── powershell/
-│   ├── scripts/
-│   │   └── Get-SystemReport.ps1
-│   ├── reports/
-│   ├── logs/
-│   └── README.md
-│
-├── screenshots/
-│
-├── terraform/
-│   ├── backend.tf
-│   ├── providers.tf
-│   ├── versions.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   ├── resource-group.tf
-│   ├── networking.tf
-│   ├── storage.tf
-│   ├── compute.tf
-│   ├── terraform.tfvars
-│   │
-│   └── modules/
-│       ├── resource-group/
-│       ├── networking/
-│       ├── storage/
-│       └── compute/
-│
-├── CHANGELOG.md
-├── LICENSE
-└── README.md
+├── scripts/
+├── modules/
+├── reports/
+├── logs/
+└── samples/
 ```
 
+---
 
-## Project Roadmap
+## Lessons
 
-### Phase 1 – Azure Infrastructure
-- ✅ Resource Group
-- ✅ Virtual Network
-- ✅ Subnet
-- ✅ Network Security Group
-- ✅ Public IP
+| Lesson | Description | Status |
+|---------|-------------|:------:|
+| Lesson 1 | System Information Report | ✅ |
+| Lesson 2 | File & Folder Automation | ⏳ |
+| Lesson 3 | CSV Automation | ⏳ |
+| Lesson 4 | Azure Automation | ⏳ |
+| Lesson 5 | Microsoft Graph Automation | ⏳ |
 
-### Phase 2 – Compute
-- ✅ Linux Virtual Machine
+---
 
-### Phase 3 – Terraform Fundamentals
-- ✅ Infrastructure as Code
-- ✅ Variables
-- ✅ Outputs
+## Skills Demonstrated
 
-### Phase 4 – Remote State
-- ✅ Azure Storage Backend
-- ✅ State Management
-
-### Phase 5 – Terraform Modules
-- ✅ Resource Group Module
-- ✅ Networking Module
-- ✅ Storage Module
-- ✅ Compute Module
-
-### Phase 6 – CI/CD
-- ✅ GitHub Actions
-- ✅ OIDC Authentication
-- ✅ Terraform Validation
-- ✅ Terraform Plan
-- ✅ GitHub Variables & Secrets
-
-### Phase 7 – PowerShell Automation
-- ✅ Lesson 1 – System Information Report
-- ⏳ File & Folder Automation
-- ⏳ Azure Automation
-- ⏳ Microsoft 365 Automation
-- ⏳ Reporting
-
-## Recent Lessons Learned
-
-- Successfully migrated Terraform resources into reusable modules using `terraform state mv`.
-- Removed backend resources from Terraform state without deleting Azure resources using `terraform state rm`.
-- Diagnosed a GitHub Actions issue caused by missing Terraform variables.
-- Learned to use GitHub Repository Variables for non-sensitive Terraform inputs and GitHub Secrets for sensitive values.
-- Implemented GitHub Actions with OIDC authentication for Azure.
-
+- PowerShell Fundamentals
+- Automation
+- Logging
+- Error Handling
+- Reporting
+- Enterprise Scripting

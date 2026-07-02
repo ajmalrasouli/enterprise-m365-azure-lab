@@ -1,3 +1,6 @@
+[CmdletBinding()]
+param ()
+
 <#
 .SYNOPSIS
     Generates a system information report.
@@ -93,6 +96,7 @@ catch {
     Write-Host ""
     Write-Host "An error occurred." -ForegroundColor Red
     Write-Host $_.Exception.Message
+    exit 1
 
 }
 finally {
@@ -100,3 +104,5 @@ finally {
     Stop-Transcript
 
 }
+
+exit 0
