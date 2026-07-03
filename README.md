@@ -1,1449 +1,557 @@
 # Enterprise Microsoft 365 & Azure Lab
 
-> A production-style Infrastructure as Code (IaC) portfolio demonstrating Microsoft Azure, Terraform, GitHub Actions, Azure CLI, Microsoft Entra ID, and enterprise cloud administration.
+> A comprehensive cloud engineering portfolio project demonstrating Microsoft Azure, Terraform, GitHub Actions, Microsoft Entra ID, Microsoft Intune, Linux administration, and enterprise PowerShell automation.
+
+![Platform](https://img.shields.io/badge/Platform-Microsoft%20Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
+![PowerShell](https://img.shields.io/badge/PowerShell-Automation-5391FE?style=for-the-badge&logo=powershell&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI/CD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-24.04-E95420?style=for-the-badge&logo=ubuntu)
+
+
 
 ---
 
-![Terraform](https://img.shields.io/badge/Terraform-v1.15+-623CE4?logo=terraform)
-![Azure](https://img.shields.io/badge/Microsoft-Azure-0078D4?logo=microsoftazure)
-![GitHub Actions](https://img.shields.io/badge/GitHub-Actions-2088FF?logo=githubactions)
-![Ubuntu](https://img.shields.io/badge/Ubuntu-24.04-E95420?logo=ubuntu)
-![License](https://img.shields.io/badge/License-MIT-green)
+# Project Overview
 
----
+The **Enterprise Microsoft 365 & Azure Lab** is a hands-on cloud engineering project designed to simulate real-world enterprise environments using Microsoft cloud technologies and Infrastructure as Code (IaC).
 
+The project combines Azure infrastructure deployment, Microsoft 365 administration, Linux server configuration, Terraform automation, GitHub Actions, and enterprise PowerShell module development into a single portfolio repository.
 
-# Overview
-
-This repository documents my personal enterprise cloud engineering lab.
-
-The project demonstrates how an existing Microsoft Azure environment can be migrated into Infrastructure as Code using Terraform, securely managed with a remote backend, and automatically validated through GitHub Actions using OpenID Connect (OIDC) authentication.
-
-Rather than creating temporary lab resources, the project focuses on real-world operational practices including:
-
-- Infrastructure as Code (Terraform)
-- Modular Terraform architecture
-- Azure Resource Manager (ARM)
-- Microsoft Entra ID authentication
-- Azure CLI administration
-- GitHub Actions CI/CD
-- Remote Terraform State
-- Azure Storage backend
-- State locking
-- Linux administration
-- Secure SSH authentication
-- Azure networking
-- Enterprise documentation
-
-The objective is to build a portfolio that reflects enterprise cloud engineering practices rather than isolated technical demonstrations.
+Rather than focusing on isolated exercises, the repository demonstrates how multiple technologies work together to build, automate, secure, and manage enterprise infrastructure using industry best practices.
 
 ---
 
 # Project Objectives
 
-The project aims to demonstrate practical experience with:
-
-- Microsoft Azure
-- Terraform
-- Infrastructure as Code (IaC)
-- Microsoft Entra ID
-- GitHub Actions
-- Azure CLI
-- Linux Administration
-- Enterprise Networking
-- Cloud Security
-- DevOps Automation
-- Continuous Integration
-- Infrastructure Documentation
-
----
-
-# Current Project Status
-
-| Area | Status |
-|-------|--------|
-| Azure Infrastructure | ✅ Complete |
-| Ubuntu Server Deployment | ✅ Complete |
-| Azure CLI | ✅ Complete |
-| Terraform Installation | ✅ Complete |
-| Existing Infrastructure Imported | ✅ Complete |
-| Remote Terraform Backend | ✅ Complete |
-| Azure Storage Backend | ✅ Complete |
-| State Locking | ✅ Complete |
-| GitHub Actions CI | ✅ Complete |
-| Azure OIDC Authentication | ✅ Complete |
-| Terraform Resource Group Module | ✅ Complete |
-| Terraform Networking Module | ✅ Complete |
-| Shared Terraform Variables | ✅ Complete |
-| Storage Module | ✅ Complete |
-| Compute Module | ✅ Complete |
-| Documentation | 🚧 Ongoing |
+- Build enterprise Azure infrastructure using Infrastructure as Code
+- Demonstrate Terraform module development and remote state management
+- Configure Microsoft Entra ID identity services
+- Deploy and manage Microsoft Intune devices
+- Develop reusable PowerShell automation modules
+- Automate validation using GitHub Actions
+- Produce professional technical documentation
+- Showcase practical cloud engineering skills
 
 ---
 
 # Architecture
 
-```text
-                        GitHub Repository
-                               │
-                               │
-                               ▼
-                     GitHub Actions Workflow
-                               │
-                               │
-                               ▼
-                OpenID Connect (OIDC Authentication)
-                               │
-                               ▼
-                    Microsoft Entra ID Application
-                               │
-                               ▼
-                      Azure Subscription
-                               │
-          ┌────────────────────┴────────────────────┐
-          │                                         │
-          ▼                                         ▼
- Remote Terraform State                  Azure Infrastructure
- Azure Storage Account                  Resource Group
- Blob Container                         Virtual Network
- State Locking                          Subnet
-                                        Network Security Group
-                                        Public IP
-                                        Network Interface
-                                        Ubuntu Linux VM
-```
+The overall solution architecture is shown below.
 
-## Azure Virtual Machine
-
-The Terraform deployment provisions a Linux virtual machine inside Azure which serves as the primary workload for this lab.
-
-![Azure Virtual Machine](screenshots/vm-enterprise-lab.png)
-
----
-
-# Repository Structure
-
-```text
-enterprise-m365-azure-lab/
-
-├── .github/
-│   └── workflows/
-│       └── terraform.yml
-│
-├── docs/
-│   ├── architecture.md
-│   ├── lessons-learned.md
-│   └── azure/
-│       ├── azure-vm-deployment.md
-│       ├── terraform-deployment.md
-│       └── terraform-state-management.md
-│
-├── screenshots/
-│
-├── terraform/
-│   ├── backend.tf
-│   ├── providers.tf
-│   ├── versions.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   ├── terraform.tfvars
-│   ├── resource-group.tf
-│   ├── networking.tf
-│   ├── storage.tf
-│   ├── compute.tf
-│   │
-│   └── modules/
-│       ├── resource-group/
-│       │   ├── main.tf
-│       │   ├── variables.tf
-│       │   └── outputs.tf
-│       │
-│       ├── networking/
-│       │   ├── main.tf
-│       │   ├── variables.tf
-│       │   └── outputs.tf
-│       │
-│       ├── storage/
-│       │   ├── main.tf
-│       │   ├── variables.tf
-│       │   └── outputs.tf
-│       │
-│       └── compute/
-│           ├── main.tf
-│           ├── variables.tf
-│           └── outputs.tf
-│
-├── .gitignore
-├── CHANGELOG.md
-├── LICENSE
-└── README.md
-```
-
-## Repository Structure
-
-The project follows a modular Terraform layout designed for scalability and reuse.
-
-![Repository Structure](screenshots/terraform-folder-structure.png)
+![Enterprise Architecture](diagrams/architecture-v1.png)
 
 ---
 
 # Technologies Used
 
-## Cloud
-
-- Microsoft Azure
-- Microsoft Entra ID
-- Azure Resource Manager
-- Azure Storage
-- Azure Virtual Machines
-- Azure Virtual Networking
-
-## Infrastructure as Code
-
-- Terraform
-- AzureRM Provider
-- Remote Backend
-- Terraform Modules
-
-## DevOps
-
-- GitHub
-- GitHub Actions
-- OpenID Connect (OIDC)
-- CI/CD
-
-## Operating System
-
-- Ubuntu Server 24.04 LTS
-
-## Administration
-
-- Azure CLI
-- SSH
-- Git
-- PowerShell
+| Category | Technologies |
+|-----------|--------------|
+| Cloud Platform | Microsoft Azure |
+| Infrastructure as Code | Terraform |
+| Automation | PowerShell 7 |
+| Identity | Microsoft Entra ID |
+| Device Management | Microsoft Intune |
+| Operating System | Ubuntu Server 24.04 LTS |
+| Security | UFW Firewall, Fail2Ban |
+| CI/CD | GitHub Actions |
+| Version Control | Git & GitHub |
 
 ---
 
 # Key Features
 
-- Existing Azure infrastructure imported into Terraform
-- Modular Infrastructure as Code
-- Remote Terraform State
-- Azure Blob Storage Backend
-- State Locking
-- GitHub Actions Automation
-- Passwordless Azure Authentication
-- Shared Terraform Variables
-- Reusable Terraform Modules
-- Enterprise Documentation
-- Infrastructure Validation
-- Infrastructure Version Control
-
----
-
-# Terraform Modules
-
-The Terraform configuration is being refactored into reusable modules following enterprise best practices.
-
-Current modules:
-
-- Resource Group
-- Networking
-
-Planned modules:
-
-- Storage
-- Compute
-- Monitoring
-- Key Vault
-
-Each module contains:
-
-- main.tf
-- variables.tf
-- outputs.tf
-
-This approach improves:
-
-- Reusability
-- Maintainability
-- Scalability
-- Separation of concerns
-
----
-
-# Project Timeline
-
-The project has been developed incrementally using enterprise Infrastructure as Code (IaC) practices. Rather than deploying everything from scratch, an existing Azure environment was progressively migrated into Terraform while maintaining full infrastructure availability.
-
-## Phase 1 — Azure Infrastructure
-
-Completed:
-
-- Created Azure Resource Group
-- Created Virtual Network
-- Created Subnet
-- Created Network Security Group
-- Created Public IP
-- Created Network Interface
-- Deployed Ubuntu Server 24.04 LTS
-- Configured Trusted Launch
-- Enabled Secure Boot
-- Enabled vTPM
-- Configured SSH authentication
-
----
-
-## Phase 2 — Linux Administration
-
-Completed:
-
-- Updated Ubuntu
-- Installed administration tools
-- Installed Azure CLI
-- Installed Terraform
-- Configured UFW Firewall
-- Installed Fail2Ban
-- Configured persistent swap
-- Verified SSH connectivity
-
----
-
-## Phase 3 — Infrastructure as Code
-
-Completed:
-
-- Created Terraform project
-- Configured AzureRM Provider
-- Created Terraform configuration
-- Imported existing Azure infrastructure
-- Validated imported resources
-- Eliminated Terraform drift
-- Verified Infrastructure as Code consistency
-
-Imported resources include:
-
-- Resource Group
-- Virtual Network
-- Subnet
-- Network Security Group
-- Public IP
-- Network Interface
-- Ubuntu Linux Virtual Machine
-
----
-
-## Phase 4 — Remote Terraform Backend
-
-Completed:
-
-- Created Azure Storage Account
-- Created Blob Container
-- Migrated Terraform state
-- Configured Azure Storage backend
-- Enabled state locking
-- Configured Azure AD authentication
-
-Benefits:
-
-- Centralized Terraform state
-- Team collaboration support
-- Automatic state locking
-- Secure backend
-- Enterprise Infrastructure as Code workflow
-
----
-
-## Phase 5 — GitHub Actions
-
-Completed:
-
-- Created CI workflow
-- Automated Terraform validation
-- Automated Terraform formatting checks
-- Automated Terraform planning
-- Configured OpenID Connect (OIDC)
-- Removed dependency on stored Azure credentials
-- Implemented passwordless Azure authentication
-
-Workflow:
-
-```text
-Developer Push
-      │
-      ▼
-GitHub Actions
-      │
-      ▼
-Terraform fmt
-      │
-      ▼
-Terraform init
-      │
-      ▼
-Terraform validate
-      │
-      ▼
-Terraform plan
-```
-
-## Continuous Integration
-
-Every push to the **main** branch automatically validates the Terraform configuration using GitHub Actions.
-
-![GitHub Actions](screenshots/GitHub-Actions-successful-run.png)
-
-
----
-
-# Infrastructure Migration
-
-One of the primary objectives of this project was to migrate manually created Azure resources into Terraform without recreating infrastructure.
-
-The migration process followed these steps:
-
-1. Create Terraform configuration
-2. Match Azure resource properties
-3. Import existing Azure resources
-4. Validate imported state
-5. Confirm zero configuration drift
-6. Store Terraform state remotely
-7. Automate validation through GitHub Actions
-
-This approach ensured that no production resources were recreated during the migration.
-
----
-
-# Terraform Module Refactoring
-
-The project is being refactored into reusable Terraform modules following enterprise Infrastructure as Code practices.
-
-Completed modules:
-
-- Resource Group
-- Networking
-
-The Resource Group module demonstrates:
-
-- Reusable module design
-- Input variables
-- Output values
-- Shared tags
-- State migration using `terraform state mv`
-
-The Networking module demonstrates:
-
-- Virtual Network
-- Subnet
-- Network Security Group
-- Public IP
-- Network Interface
-- Module outputs
-- Root module simplification
-
-All module migrations were completed without changing any Azure infrastructure by using Terraform state migration.
-
----
-
-# Terraform State Migration
-
-During the module refactoring process, Terraform state was moved rather than recreating Azure resources.
-
-Example:
-
-```bash
-terraform state mv \
-azurerm_resource_group.rg \
-module.resource_group.azurerm_resource_group.this
-```
-
-Networking resources were migrated using the same approach.
-
-Benefits:
-
-- No infrastructure downtime
-- No resource recreation
-- No IP address changes
-- No service interruption
-- Safe Infrastructure as Code refactoring
-
-
-### Migrating Local State
-
-The Terraform state was migrated from the local backend to Azure Blob Storage.
-
-![Terraform State Migration](screenshots/terraform-Migrate%20the%20state(1).png)
-
-
----
-
-# Remote Terraform Backend
-
-The project stores Terraform state in Azure Storage.
-
-Configuration includes:
-
-- Azure Storage Account
-- Blob Container
-- Remote State
-- State Locking
-
-Advantages:
-
-- Shared state
-- Improved collaboration
-- Secure storage
-- Automatic locking
-- Enterprise Terraform workflow
-
----
-
-# GitHub Actions CI Pipeline
-
-Every push to the `main` branch automatically performs:
-
-- Checkout repository
-- Azure authentication using OpenID Connect
-- Terraform initialization
-- Terraform formatting validation
-- Terraform validation
-- Terraform planning
-
-This provides continuous validation of the Infrastructure as Code repository before changes are applied.
-
----
-
-# Security
-
-The project follows security best practices.
-
-Implemented:
-
-- Passwordless Azure authentication
-- Microsoft Entra ID Workload Identity Federation
-- OpenID Connect
-- Remote Terraform state
-- Secure SSH authentication
-- Trusted Launch
-- Secure Boot
-- vTPM
-- UFW Firewall
-- Fail2Ban
-- GitHub Secrets
-- Terraform state locking
-
-Sensitive information is never committed to source control.
-
-Ignored files include:
-
-```text
-terraform.tfvars
-*.tfstate
-*.tfstate.*
-.azure/
-*.pem
-*.ppk
-azure-generated-key.pub
-```
-
----
-
-# Lessons Learned
-
-This project provided practical experience with:
-
-- Infrastructure as Code migration
-- Azure Resource Manager
-- Terraform imports
-- Terraform state management
-- Remote backends
-- Azure Storage
-- Microsoft Entra ID
-- GitHub Actions
-- OpenID Connect authentication
-- Terraform modules
-- Enterprise Infrastructure as Code design
-- Cloud networking
-- Linux administration
-
-## Lessons Learned – Terraform State Management
-
-During the Storage Module implementation, I encountered an important Terraform state management scenario.
-
-### Problem
-
-Initially, the Terraform backend storage account (`stajmalterraform01`) and the `tfstate` container were managed as Terraform resources. After refactoring the project to use a reusable Storage module, I removed those resources from the Terraform configuration because the backend infrastructure should not be managed by the same Terraform project that depends on it.
-
-When I ran:
-
-```bash
-terraform plan
-```
-
-Terraform reported:
-
-```text
-Plan: 1 to add, 0 to change, 2 to destroy.
-```
-
-Terraform planned to destroy:
-
-- `azurerm_storage_account.tfstate`
-- `azurerm_storage_container.tfstate`
-
-This happened because the resources still existed in the Terraform state file even though they had been removed from the configuration.
-
-### Solution
-
-Instead of allowing Terraform to delete the Azure resources, I removed them from the Terraform state using:
-
-```bash
-terraform state rm azurerm_storage_container.tfstate
-terraform state rm azurerm_storage_account.tfstate
-```
-
-This removed the resources from Terraform's state while leaving the actual Azure Storage Account and Blob Container untouched.
-
-After running the commands, the execution plan became:
-
-```text
-Plan: 1 to add, 0 to change, 0 to destroy.
-```
-
-Terraform then created only the new Storage Account managed by the reusable Storage module.
-
-### Key Takeaways
-
-- Terraform state determines what Terraform manages.
-- Removing a resource from the configuration does **not** automatically remove it from the state.
-- If a resource is removed from the configuration but remains in the state, Terraform assumes it should be destroyed.
-- `terraform state rm` removes a resource from Terraform's state **without deleting the actual Azure resource**.
-- Backend infrastructure (such as the Terraform state storage account) should be managed separately from the infrastructure that depends on it.
-- Understanding Terraform state management is an essential operational skill for Infrastructure as Code and DevOps engineers.
-
-
-## GitHub Actions and Terraform Variables
-
-### Problem
-
-The GitHub Actions workflow stalled during `terraform plan` and appeared to hang while acquiring the remote state lock.
-
-The workflow output showed:
-
-```text
-var.storage_account_name
-  Storage Account Name
-```
-
-### Root Cause
-
-The required variable `storage_account_name` was stored locally in `terraform.tfvars`.
-
-Since `terraform.tfvars` is excluded from source control (`*.tfvars` in `.gitignore`), GitHub Actions did not receive this value.
-
-Terraform therefore prompted for the missing variable, which caused the non-interactive workflow to wait indefinitely.
-
-### Solution
-
-Created a GitHub Repository Variable:
-
-```
-
-TF_VAR_storage_account_name = ajmaltechlabstore01
-
-```
-
-and referenced it in the workflow:
-
-```yaml
-env:
-  TF_VAR_storage_account_name: ${{ vars.TF_VAR_storage_account_name }}
-```
-
-### Lesson Learned
-
-Do not rely on `terraform.tfvars` in CI/CD pipelines.
-
-Use:
-
-- GitHub Repository Variables for non-sensitive values.
-- GitHub Secrets for sensitive values.
-
-
-
-# Terraform Project Structure
-
-The Terraform configuration has been organised following enterprise Infrastructure as Code practices.
-
-```text
-terraform/
-
-├── backend.tf
-├── providers.tf
-├── versions.tf
-├── variables.tf
-├── outputs.tf
-├── resource-group.tf
-├── networking.tf
-├── storage.tf
-├── virtual-machine.tf
-├── terraform.tfvars
-│
-└── modules/
-    ├── resource-group/
-    │   ├── main.tf
-    │   ├── variables.tf
-    │   └── outputs.tf
-    │
-    └── networking/
-        ├── main.tf
-        ├── variables.tf
-        └── outputs.tf
-```
-
-The modular design improves:
-
-- Code reuse
-- Maintainability
-- Scalability
-- Separation of concerns
-- Easier collaboration
-- Enterprise readiness
-
-Future modules will include:
-
-- Storage
-- Compute
-- Monitoring
-- Key Vault
-
----
-
-# Azure Resources
-
-The current environment is composed of the following Azure resources.
-
-## Resource Group
+## Azure Infrastructure
 
 - Azure Resource Group
-- Central location for all lab resources
-
-## Networking
-
 - Virtual Network
-- Subnet
 - Network Security Group
-- Static Public IP
-- Network Interface
-
-## Compute
-
-- Ubuntu Server 24.04 LTS
-- Trusted Launch
-- Secure Boot
-- vTPM
-- SSH Authentication
-
-## Storage
-
+- Ubuntu Virtual Machine
 - Azure Storage Account
-- Blob Container
 - Remote Terraform Backend
 
+## Infrastructure as Code
 
-## Remote Terraform State
+- Modular Terraform configuration
+- Reusable Terraform modules
+- Remote backend
+- State migration
+- Variable driven deployments
 
-Terraform state is stored securely inside an Azure Storage Account using an Azure Blob container.
+## Enterprise PowerShell
 
-![Azure Storage Account](screenshots/terraform-storage-created-on-Azure.png)
+- Reusable PowerShell module
+- Advanced Functions
+- Module Manifest
+- Logging Framework
+- Backup Automation
+- Disk Reporting
+- Parameter Validation
+- Pipeline Support
+- Comment-Based Help
 
-
----
-
-# Infrastructure Validation
-
-Every infrastructure change follows the same validation process.
-
-```bash
-terraform fmt
-terraform validate
-terraform plan
-```
-
-The objective is always:
-
-```text
-No changes.
-Your infrastructure matches the configuration.
-```
-
-This ensures Terraform configuration accurately represents the deployed Azure infrastructure.
-
-### Terraform Initialization
-
-Terraform initializes the AzureRM provider, downloads required plugins and configures the remote backend.
-
-![Terraform Init](screenshots/terraform-init.png)
-
-
-### Terraform Validation
-
-Terraform formatting and validation ensure configuration quality before deployment.
-
-![Terraform Validation](screenshots/terraform-fmt-validate.png)
-
-
-### Terraform Planning
-
-Terraform compares the desired configuration against the current Azure infrastructure before making changes.
-
-![Terraform Plan](screenshots/terraform-plan.png)
-
-
-### Deploy Storage Resources
-
-Terraform creates the Azure Storage Account and Blob Container.
-
-![Terraform Apply](screenshots/terraform-apply-storage.png)
-
-![Terraform Apply Complete](screenshots/terraform-apply-storage2.png)
-
-## Terraform State
-
-Current Terraform-managed resources can be inspected using the Terraform state commands.
-
-![Terraform State](screenshots/terraform-state-list.png)
----
-
-# GitHub Actions
-
-Infrastructure validation is automated through GitHub Actions.
-
-Workflow stages:
-
-```text
-Developer
-
-↓
-
-Git Push
-
-↓
-
-GitHub Repository
-
-↓
-
-GitHub Actions
-
-↓
-
-Azure Login (OIDC)
-
-↓
-
-Terraform Init
-
-↓
-
-Terraform Validate
-
-↓
-
-Terraform Plan
-
-↓
-
-Success
-```
-
-Pipeline features include:
-
-- Automatic execution
-- Infrastructure validation
-- Terraform formatting checks
-- Azure authentication
-- Remote backend access
-- State locking
-- Infrastructure planning
-
-No Azure credentials are stored in GitHub.
-
-Authentication uses:
+## Identity & Device Management
 
 - Microsoft Entra ID
-- OpenID Connect
-- Federated Credentials
+- Conditional Access
+- Security Groups
+- Microsoft Intune
+- Device Compliance Policies
+- Application Deployment
+
+## DevOps
+
+- GitHub Actions
+- Terraform validation
+- Terraform formatting
+- Automated planning
+- OIDC authentication
 
 ---
 
-# Azure Authentication
+# Why This Project?
 
-Authentication is performed using Microsoft Entra ID Workload Identity Federation.
+This repository was created to demonstrate practical cloud engineering skills using technologies commonly found in enterprise IT environments.
 
-Advantages include:
+It focuses on automation, Infrastructure as Code, documentation, modular design, and repeatable deployments rather than simple proof-of-concept examples.
 
-- Passwordless authentication
-- No Service Principal secrets
-- Short-lived access tokens
-- Improved security
-- Enterprise best practices
+The project continues to evolve as additional Azure services, Microsoft 365 automation, and PowerShell functionality are added.
 
-Authentication flow:
+
+
+---
+
+# Repository Structure
+
+The repository is organised into logical components, separating infrastructure, automation, documentation, and supporting resources.
 
 ```text
-GitHub Actions
-
-↓
-
-OIDC Token
-
-↓
-
-Microsoft Entra ID
-
-↓
-
-Azure Subscription
-
-↓
-
-Terraform
-```
-## Azure Cost Management
-
-Azure Cost Management is used to monitor resource usage and estimate project costs.
-
-![Azure Cost Management](screenshots/azure-cost-overview.png)
-
-
-
-## GitHub OIDC Authentication
-
-GitHub Actions authenticates to Azure using Microsoft Entra ID and OpenID Connect (OIDC), eliminating the need to store Azure credentials in GitHub secrets.
-
-![Azure Role Assignment](screenshots/add-role-assignment-terraform-cli.png)
-
----
-
-# Remote State
-
-Terraform state is stored remotely.
-
-Configuration includes:
-
-- Azure Storage Account
-- Blob Container
-- AzureRM Backend
-
-Features:
-
-- Centralized state
-- Team collaboration
-- State locking
-- Secure storage
-- Version control integration
-
-
-### Verify Remote State
-
-The Terraform state file can be verified directly in the Azure Portal.
-
-![Remote State Verification](screenshots/terraform-Migrate-the-state-on-azure.png)
-
----
-
-# Repository Documentation
-
-Project documentation is organised as follows.
-
-```text
-docs/
-
-├── architecture.md
+enterprise-m365-azure-lab
 │
-└── azure/
-    ├── azure-vm-deployment.md
-    └── terraform-deployment.md
+├── .github/                 # GitHub Actions CI workflows
+├── diagrams/                # Architecture diagrams
+├── docs/                    # Technical documentation
+├── powershell/              # Enterprise PowerShell automation
+├── screenshots/             # Project screenshots
+├── terraform/               # Infrastructure as Code
+│
+├── README.md
+├── CHANGELOG.md
+└── LICENSE
 ```
 
-Documentation includes:
-
-- Azure deployment
-- Terraform implementation
-- Architecture
-- Infrastructure design
-- Operational procedures
-- Screenshots
+This structure follows a modular approach, making the project easy to navigate, maintain, and extend.
 
 ---
 
-# Screenshots
+# Azure Infrastructure
 
-The repository includes screenshots demonstrating the deployment and configuration process.
+The Azure environment was designed to simulate a small enterprise deployment using Infrastructure as Code.
+
+The Terraform configuration provisions and manages the following Azure resources:
+
+| Resource | Purpose |
+|----------|---------|
+| Resource Group | Logical container for Azure resources |
+| Virtual Network | Private network for cloud resources |
+| Network Security Group | Controls inbound and outbound traffic |
+| Network Interface | Connects the virtual machine to the network |
+| Public IP Address | Secure remote administration |
+| Ubuntu Server 24.04 LTS | Linux administration and automation |
+| Storage Account | Remote Terraform backend |
+| Blob Container | Stores Terraform state files |
+
+The environment is designed to be reproducible, modular, and easy to expand with additional Azure services.
+
+---
+
+# Terraform Infrastructure
+
+Infrastructure is managed entirely through Terraform using reusable modules.
+
+## Current Modules
+
+| Module | Description |
+|---------|-------------|
+| Resource Group | Creates Azure Resource Groups |
+| Networking | Deploys Virtual Network and NSG |
+| Storage | Creates Storage Account and Blob Container |
+| Compute | Deploys the Ubuntu Virtual Machine |
+
+## Infrastructure Highlights
+
+- Modular Terraform architecture
+- Remote state stored in Azure Storage
+- Azure AD authentication
+- State locking
+- Variable-driven deployments
+- Reusable module design
+- Infrastructure validation
+- GitHub Actions integration
+
+The Terraform configuration follows Infrastructure as Code best practices, allowing infrastructure to be deployed consistently across environments.
+
+---
+
+# Enterprise PowerShell Automation
+
+The project includes a reusable PowerShell module named **ITAutomation**.
+
+Unlike standalone scripts, the module is organised using enterprise PowerShell development practices, making it scalable, reusable, and easy to maintain.
+
+## Module Features
+
+- Advanced Functions
+- Module Manifest (.psd1)
+- Module File (.psm1)
+- Automatic Function Loading
+- Comment-Based Help
+- Parameter Validation
+- Pipeline Support
+- Enterprise Logging
+- Backup Automation
+- Storage Reporting
+- Structured Object Output
+- Supports `-Verbose`, `-WhatIf`, and `-Confirm`
+
+### Available Cmdlets
+
+| Cmdlet | Description |
+|---------|-------------|
+| Get-PCName | Returns the local computer name |
+| Get-DateTime | Returns the current date and time |
+| Get-Greeting | Demonstrates advanced parameter validation |
+| Get-Hello | Sample module function |
+| Test-PathExists | Validates whether a file or folder exists |
+| Get-DiskReport | Displays local disk usage information |
+| Write-Log | Enterprise logging utility |
+| Start-Backup | Performs folder backups with logging and WhatIf support |
+
+### Module Structure
+
+```text
+ITAutomation
+│
+├── Public
+│   ├── Backup
+│   ├── Logging
+│   ├── Storage
+│   ├── System
+│   └── Validation
+│
+├── Private
+│
+├── ITAutomation.psd1
+└── ITAutomation.psm1
+```
+
+The module demonstrates enterprise PowerShell development concepts including reusable architecture, modular design, advanced functions, structured output, and automation best practices.
+
+---
+
+# PowerShell Skills Demonstrated
+
+The ITAutomation module demonstrates practical PowerShell development skills including:
+
+- Module development
+- Advanced Functions
+- CmdletBinding
+- Comment-Based Help
+- Parameter Validation
+- Error Handling
+- Logging Framework
+- Pipeline Support
+- Object-Oriented Output
+- SupportsShouldProcess (`-WhatIf` / `-Confirm`)
+- Enterprise folder structure
+- Reusable automation design
+
+The module is intended to serve as a foundation for future automation covering Azure, Microsoft 365, Microsoft Graph, Active Directory, and Windows Server administration.
+
+
+---
+
+# Continuous Integration & Deployment (CI/CD)
+
+Infrastructure validation is automated using **GitHub Actions**, ensuring Terraform configurations are validated before deployment.
+
+## CI Pipeline
+
+The workflow performs the following automated tasks:
+
+- Terraform initialization
+- Terraform formatting validation (`terraform fmt`)
+- Terraform configuration validation (`terraform validate`)
+- Terraform execution planning (`terraform plan`)
+- Azure authentication using OpenID Connect (OIDC)
+
+This pipeline demonstrates Infrastructure as Code validation and modern cloud deployment practices without relying on long-lived credentials.
+
+---
+
+# Technical Documentation
+
+Comprehensive documentation has been created throughout the project to explain design decisions, deployment procedures, and implementation details.
+
+## Documentation Index
+
+| Category | Description |
+|----------|-------------|
+| Architecture | Overall solution architecture |
+| Azure | Azure VM deployment and Terraform implementation |
+| Microsoft Entra ID | Identity and Conditional Access configuration |
+| Microsoft Intune | Device enrolment, compliance policies and application deployment |
+| PowerShell | Coding standards and module development |
+
+The documentation is intended to mirror the level of detail commonly found within enterprise IT environments, enabling deployments to be reproduced and maintained.
+
+---
+
+# Project Screenshots
+
+The repository includes screenshots captured throughout the implementation process to demonstrate successful deployments and configuration.
 
 Examples include:
 
-- Azure Resource Group
-- Virtual Network
-- Ubuntu Server
-- Azure CLI
-- Terraform Installation
-- Terraform Import
-- Terraform State Migration
-- GitHub Actions
-- Azure Storage Backend
-- Remote State
-- Successful Terraform Plan
-- Linux Administration
+- Azure infrastructure deployment
+- Terraform execution
+- Remote backend configuration
+- GitHub Actions pipeline
+- Ubuntu server administration
+- Microsoft Entra ID
+- Microsoft Intune device management
+- Conditional Access policies
+
+These screenshots provide visual evidence of the completed implementation and support the accompanying technical documentation.
 
 ---
 
 # Skills Demonstrated
 
-This project demonstrates practical experience with:
+This project demonstrates practical experience across multiple areas of modern cloud and infrastructure engineering.
 
 ## Microsoft Azure
 
-- Azure Resource Manager
-- Virtual Networks
-- Virtual Machines
+- Azure Resource Manager (ARM)
+- Virtual Networking
 - Storage Accounts
-- Network Security Groups
-- Public IP
-- Resource Groups
+- Linux Virtual Machines
+- Identity and Access Management
+- Remote administration using SSH
 
-## Terraform
+## Infrastructure as Code
 
-- Infrastructure as Code
-- Terraform Modules
-- Resource Imports
-- State Migration
-- Remote Backend
-- State Locking
-- Variables
-- Outputs
-- Providers
+- Terraform
+- Modular architecture
+- Remote backend
+- State migration
+- Variables and outputs
+- Infrastructure validation
+- Reusable modules
+
+## Automation
+
+- Enterprise PowerShell module development
+- Advanced PowerShell Functions
+- Logging framework
+- Backup automation
+- Storage reporting
+- Parameter validation
+- Pipeline support
+
+## Microsoft 365
+
+- Microsoft Entra ID
+- Conditional Access
+- Security Groups
+- User administration
+- Microsoft Intune
+- Device compliance
+- Application deployment
+
+## Linux Administration
+
+- Ubuntu Server 24.04 LTS
+- SSH administration
+- UFW Firewall
+- Fail2Ban
+- Swap configuration
+- Package management
 
 ## DevOps
 
 - Git
 - GitHub
 - GitHub Actions
-- Continuous Integration
-- Infrastructure Validation
-- Version Control
-
-## Identity & Security
-
-- Microsoft Entra ID
-- OpenID Connect
-- Federated Credentials
-- Azure RBAC
-- Secure SSH Authentication
-- Trusted Launch
-- Secure Boot
-- vTPM
-
-## Linux Administration
-
-- Ubuntu Server
-- Azure CLI
-- SSH
-- UFW Firewall
-- Fail2Ban
-- Package Management
-- Swap Configuration
-
----
-
-# Project Highlights
-
-✔ Existing Azure infrastructure imported into Terraform
-
-✔ Remote Terraform backend configured
-
-✔ Azure Storage state locking enabled
-
-✔ GitHub Actions CI pipeline implemented
-
-✔ Passwordless Azure authentication using OpenID Connect
-
-✔ Terraform state migrated safely
-
-✔ Resource Group refactored into reusable module
-
-✔ Networking refactored into reusable module
-
-✔ Shared Terraform variables implemented
-
-✔ Infrastructure validated with zero configuration drift
-
-✔ Enterprise documentation maintained throughout the project
-
-## Project Management
-
-Development progress is tracked using GitHub Projects.
-
-![GitHub Project Board](screenshots/github-project-milestone.png)
-
----
-
-# Design Principles
-
-This project follows several engineering principles.
-
-- Infrastructure as Code
-- Security by Default
-- Modular Design
-- Automation First
-- Reusable Components
-- Documentation Driven
-- Incremental Refactoring
-- Zero Downtime Infrastructure Migration
-- Version Controlled Infrastructure
-- Enterprise Maintainability
-
----
-
-# Future Roadmap
-
-The project will continue to evolve following enterprise Infrastructure as Code and Microsoft Cloud engineering best practices.
-
-## Terraform
-
-- Complete Storage Module
-- Complete Compute Module
-- Create Monitoring Module
-- Create Key Vault Module
-- Implement Diagnostic Settings
-- Introduce Terraform Workspaces
-- Add Environment Separation (Dev / Test / Production)
-
----
-
-## Azure
-
-Planned Azure services include:
-
-- Azure Key Vault
-- Azure Monitor
-- Log Analytics Workspace
-- Azure Bastion
-- Azure Backup
-- Azure Update Manager
-- Azure Policy
-- Azure Automation
-- Azure Recovery Services Vault
-
----
-
-## Microsoft 365
-
-Future Microsoft 365 administration scenarios will include:
-
-- Microsoft Entra ID
-- Conditional Access
-- Identity Governance
-- Privileged Identity Management (PIM)
-- Microsoft Intune
-- Device Compliance Policies
-- Windows Autopilot
-- Microsoft Defender for Endpoint
-- Microsoft Purview
-- Microsoft Sentinel
-
----
-
-## DevOps
-
-Future automation work includes:
-
-- Multi-stage GitHub Actions pipelines
-- Pull Request validation
-- Terraform Apply workflow
-- Manual approvals
-- Automated documentation generation
-- Release automation
-- Terraform testing
-- Security scanning
-- Cost analysis
+- CI/CD pipelines
+- OpenID Connect (OIDC)
 
 ---
 
 # Learning Outcomes
 
-This project has provided hands-on experience with:
+This project was developed to gain practical experience in designing, deploying, securing, automating, and documenting enterprise cloud environments.
 
-- Designing Azure infrastructure
-- Deploying Infrastructure as Code
-- Importing existing Azure resources into Terraform
-- Managing Terraform state
-- Migrating state safely using `terraform state mv`
-- Configuring remote Terraform backends
-- Azure Storage state locking
-- Microsoft Entra ID authentication
-- GitHub Actions automation
-- OpenID Connect (OIDC)
-- Terraform module design
-- Linux administration
-- Azure networking
-- Enterprise documentation
+Key learning outcomes include:
+
+- Applying Infrastructure as Code principles using Terraform
+- Building reusable and modular infrastructure
+- Managing Azure resources through automation
+- Implementing enterprise identity and device management
+- Developing reusable PowerShell modules
+- Automating validation using GitHub Actions
+- Producing professional technical documentation
+- Following Git and GitHub best practices
+
+Rather than focusing solely on individual technologies, this repository demonstrates how cloud infrastructure, automation, identity management, documentation, and DevOps practices integrate to support modern enterprise IT operations.
 
 ---
 
-# Certifications Supporting This Project
+# Project Status
 
-The practical work in this repository complements the following Microsoft and cloud certifications.
+> **Current Status:** ✅ Active Portfolio Project
 
-## Microsoft
+The core objectives of this repository have been completed.
 
-- Microsoft Certified: Azure Administrator Associate (AZ-104)
-- Microsoft Certified: Azure AI Engineer Associate
-- Microsoft Certified: Identity and Access Administrator Associate (SC-300)
-- Microsoft Azure Fundamentals (AZ-900)
-- Microsoft Azure AI Fundamentals (AI-900)
-- Microsoft Azure Data Fundamentals (DP-900)
-- Microsoft 365 Fundamentals (MS-900)
-- Microsoft Power Platform Fundamentals (PL-900)
+Current implementation includes:
 
----
-
-## AWS
-
-- AWS Certified Solutions Architect – Associate
-- AWS Certified Cloud Practitioner
-
----
-
-## Google
-
-- Professional Chrome Enterprise Administrator
-
----
-
-## HashiCorp
-
-- Terraform Associate (003)
-
----
-
-# References
-
-Useful Microsoft and HashiCorp documentation used throughout this project.
-
-## Microsoft Learn
-
-- Azure Virtual Machines
-- Azure Virtual Networks
-- Azure Storage
-- Microsoft Entra ID
-- Azure CLI
-- Azure RBAC
-- Azure Resource Manager
-
-## Terraform
-
-- Terraform Language
-- AzureRM Provider
-- Terraform State
-- Terraform Modules
-- Terraform Backend
-- Terraform Import
-- Terraform State Migration
-
----
-
-## Project Overview
-
-This repository demonstrates the design, deployment, automation, and management of enterprise cloud infrastructure using Infrastructure as Code (IaC) and scripting.
-
-The project focuses on building production-style skills across Microsoft Azure, Terraform, GitHub Actions, and PowerShell automation.
-
-### Technologies
-
-- Microsoft Azure
-- Terraform
-- GitHub Actions
-- PowerShell
-- Azure CLI
-- Git
-- GitHub
-
-## Features
-
-### Infrastructure as Code
-
-- Azure Resource Group
-- Virtual Network
-- Subnet
-- Network Security Group
-- Public IP Address
-- Linux Virtual Machine
-- Azure Storage Account
-- Remote Terraform State
-
-### Terraform
-
-- Modular architecture
-- Remote backend
-- State management
-- Reusable modules
-- Outputs and variables
-- Enterprise repository structure
-
-### CI/CD
-
-- GitHub Actions
-- OIDC authentication
-- Terraform validation
-- Terraform formatting checks
-- Terraform plan generation
-- Plan artifact upload
-
-### PowerShell Automation
-
-- System Information Reporting
-- Logging
-- CSV reporting
-- Error handling
-- Enterprise script structure
-
-## Repository Structure
-
-```text
-enterprise-m365-azure-lab/
-
-├── .github/
-│   └── workflows/
-│       └── terraform.yml
-│
-├── docs/
-│   ├── architecture.md
-│   ├── lessons-learned.md
-│   └── azure/
-│
-├── powershell/
-│   ├── scripts/
-│   │   └── Get-SystemReport.ps1
-│   ├── reports/
-│   ├── logs/
-│   └── README.md
-│
-├── screenshots/
-│
-├── terraform/
-│   ├── backend.tf
-│   ├── providers.tf
-│   ├── versions.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   ├── resource-group.tf
-│   ├── networking.tf
-│   ├── storage.tf
-│   ├── compute.tf
-│   ├── terraform.tfvars
-│   │
-│   └── modules/
-│       ├── resource-group/
-│       ├── networking/
-│       ├── storage/
-│       └── compute/
-│
-├── CHANGELOG.md
-├── LICENSE
-└── README.md
-```
-
-
-## Project Roadmap
-
-### Phase 1 – Azure Infrastructure
-- ✅ Resource Group
-- ✅ Virtual Network
-- ✅ Subnet
-- ✅ Network Security Group
-- ✅ Public IP
-
-### Phase 2 – Compute
-- ✅ Linux Virtual Machine
-
-### Phase 3 – Terraform Fundamentals
-- ✅ Infrastructure as Code
-- ✅ Variables
-- ✅ Outputs
-
-### Phase 4 – Remote State
-- ✅ Azure Storage Backend
-- ✅ State Management
-
-### Phase 5 – Terraform Modules
-- ✅ Resource Group Module
-- ✅ Networking Module
-- ✅ Storage Module
-- ✅ Compute Module
-
-### Phase 6 – CI/CD
-- ✅ GitHub Actions
-- ✅ OIDC Authentication
-- ✅ Terraform Validation
-- ✅ Terraform Plan
-- ✅ GitHub Variables & Secrets
-
-### Phase 7 – PowerShell Automation
-- ✅ System Information Report
-- ✅ Enterprise Backup Utility
-- ⏳ Log Cleanup Automation
-- ⏳ Azure Automation
-- ⏳ Microsoft Graph Automation
-
-## Recent Lessons Learned
-
-- Successfully migrated Terraform resources into reusable modules using `terraform state mv`.
-- Removed backend resources from Terraform state without deleting Azure resources using `terraform state rm`.
-- Diagnosed a GitHub Actions issue caused by missing Terraform variables.
-- Learned to use GitHub Repository Variables for non-sensitive Terraform inputs and GitHub Secrets for sensitive values.
-- Implemented GitHub Actions with OIDC authentication for Azure.
-
-
-
-
-
----
-
-
-# Contributing
-
-This repository is primarily a personal learning and portfolio project.
-
-Suggestions, improvements and constructive feedback are always welcome.
-
-Potential future contributions include:
-
-- Additional Terraform modules
-- Documentation improvements
+- Azure infrastructure deployment
+- Terraform Infrastructure as Code
+- Modular Terraform architecture
+- Remote Terraform backend
+- GitHub Actions CI pipeline
+- Microsoft Entra ID configuration
+- Microsoft Intune device management
+- Enterprise PowerShell automation module
+- Technical documentation
 - Architecture diagrams
-- Automation enhancements
-- GitHub Actions improvements
+
+Future enhancements will focus on expanding automation capabilities and additional Azure services while maintaining enterprise development standards.
+
+
+---
+
+# Future Roadmap
+
+Although the core objectives of this repository have been completed, it will continue to evolve as additional enterprise technologies are explored.
+
+## Planned Enhancements
+
+### Microsoft Azure
+
+- Azure Key Vault
+- Azure Monitor
+- Log Analytics Workspace
+- Azure Backup
+- Azure Bastion
+- Azure Automation Accounts
+
+### Microsoft 365
+
+- Microsoft Graph PowerShell SDK
+- Microsoft Teams administration
+- Exchange Online automation
+- SharePoint Online automation
+- Microsoft Defender integration
+
+### PowerShell
+
+- Pester unit testing
+- PSScriptAnalyzer integration
+- PowerShell Gallery publishing
+- Configuration management
+- REST API integration
+- Scheduled automation
+
+### DevOps
+
+- Multi-stage GitHub Actions workflows
+- Automated testing
+- Release pipelines
+- Semantic versioning
+- Infrastructure drift detection
+
+---
+
+# Repository Highlights
+
+This project demonstrates practical experience across multiple cloud engineering disciplines within a single repository.
+
+## Highlights
+
+- Enterprise Azure infrastructure deployment
+- Infrastructure as Code using Terraform
+- Modular Terraform architecture
+- Remote Terraform backend
+- GitHub Actions CI pipeline
+- Enterprise PowerShell automation module
+- Microsoft Entra ID administration
+- Microsoft Intune administration
+- Linux server administration
+- Professional technical documentation
+
+The repository is designed to reflect real-world engineering practices including modular architecture, automation, documentation, version control, and continuous improvement.
+
+---
+
+# Lessons Learned
+
+Developing this project provided valuable experience in designing, implementing, documenting, and maintaining cloud infrastructure using modern engineering practices.
+
+Some of the key lessons include:
+
+- Designing reusable Terraform modules improves scalability and maintainability.
+- Remote Terraform state enables collaborative Infrastructure as Code workflows.
+- GitHub Actions simplifies infrastructure validation and deployment.
+- Enterprise PowerShell modules are significantly more maintainable than standalone scripts.
+- Technical documentation is as important as the implementation itself.
+- Small, incremental commits create a much clearer project history than infrequent large commits.
+- Automation should prioritise repeatability, consistency, and readability.
+
+This project has reinforced the importance of treating infrastructure as software through version control, automation, documentation, and continuous improvement.
 
 ---
 
 # Repository Statistics
 
-Current implementation includes:
+| Category | Status |
+|-----------|--------|
+| Azure Infrastructure | ✅ Completed |
+| Terraform Deployment | ✅ Completed |
+| Terraform Modules | ✅ Completed |
+| Remote Backend | ✅ Completed |
+| GitHub Actions CI | ✅ Completed |
+| Microsoft Entra ID | ✅ Completed |
+| Microsoft Intune | ✅ Completed |
+| Linux Administration | ✅ Completed |
+| Enterprise PowerShell Module | ✅ Completed |
+| Technical Documentation | ✅ Completed |
 
-- Azure Infrastructure
-- Remote Terraform Backend
-- GitHub Actions CI
-- Azure OIDC Authentication
-- Enterprise Documentation
-- Terraform Modules
-- Infrastructure Imports
-- Linux Administration
-- Azure CLI Automation
+---
 
-Project metrics continue to grow as additional Azure services and Microsoft 365 workloads are implemented.
+# Contributing
+
+Contributions, suggestions, and feedback are welcome.
+
+If you have recommendations for improving the project, feel free to:
+
+- Open an Issue
+- Submit a Pull Request
+- Share ideas for additional Azure or Microsoft 365 scenarios
+- Suggest improvements to documentation
+
+Constructive feedback is always appreciated.
+
+---
+
+# Changelog
+
+The complete project history is maintained in:
+
+**CHANGELOG.md**
+
+Each release documents the new functionality, infrastructure changes, automation improvements, and documentation updates added throughout the development of the project.
 
 ---
 
@@ -1451,50 +559,28 @@ Project metrics continue to grow as additional Azure services and Microsoft 365 
 
 This project is licensed under the MIT License.
 
-See the `LICENSE` file for details.
+See the **LICENSE** file for details.
 
 ---
 
-# Author
+# Acknowledgements
+
+This project has been developed as part of an ongoing professional development journey focused on Microsoft Cloud, Infrastructure as Code, automation, and enterprise systems administration.
+
+Special thanks to the Microsoft Learn platform, HashiCorp documentation, the PowerShell community, and the wider open-source community for providing outstanding learning resources and best practices.
+
+---
+
+# About the Author
 
 **Ajmal Rasouli**
 
-Technical Engineer | Cloud Computing | Infrastructure Management
+Cloud | Infrastructure | Microsoft 365 | Azure | Terraform | PowerShell
 
-Specialising in:
-
-- Microsoft Azure
-- Microsoft 365
-- Microsoft Entra ID
-- Terraform
-- Infrastructure as Code
-- Azure Networking
-- Linux Administration
-- GitHub Actions
-- DevOps Automation
+With over 20 years of IT experience, this repository reflects a continuous commitment to learning, automation, documentation, and applying industry best practices across cloud and enterprise technologies.
 
 ---
 
-# Project Summary
+> *"Automation is not about replacing people — it's about empowering engineers to spend more time solving meaningful problems."*
 
-This repository demonstrates the practical implementation of enterprise cloud engineering practices using Microsoft Azure, Terraform and GitHub Actions.
-
-Highlights include:
-
-- Azure infrastructure deployed and managed using Infrastructure as Code
-- Existing Azure resources imported into Terraform
-- Remote Terraform backend using Azure Storage
-- State locking for collaborative Infrastructure as Code
-- Passwordless Azure authentication using Microsoft Entra ID and OpenID Connect
-- Automated validation through GitHub Actions
-- Modular Terraform architecture
-- Zero-drift infrastructure validation
-- Enterprise documentation maintained throughout the project lifecycle
-
-The project continues to evolve with additional Azure services, Microsoft 365 administration scenarios and DevOps automation, providing a realistic representation of modern cloud engineering practices.
-
----
-
-**Last Updated:** June 2026
-
-**Status:** Active Development 🚀
+⭐ If you found this repository useful, please consider starring the project.

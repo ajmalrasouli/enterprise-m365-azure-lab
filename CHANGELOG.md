@@ -2,107 +2,103 @@
 
 All notable changes to this project are documented in this file.
 
-The format is inspired by **Keep a Changelog** and follows semantic project milestones.
+This project follows the principles of
+Keep a Changelog and Semantic Versioning.
 
 ---
 
-## v2.0.0 - Terraform Infrastructure
+## [Unreleased]
 
-### Added
-- Terraform project structure
-- AzureRM provider configuration
-- Modular Terraform configuration
-- Resource outputs
-- Project documentation
+### Planned
 
-### Imported into Terraform
-- Resource Group
-- Virtual Network
-- Default Subnet
-- Network Security Group
-- Public IP Address
-- Network Interface
-- Ubuntu Linux Virtual Machine
-
-### Improved
-- Refactored Terraform into multiple `.tf` files
-- Improved repository structure
-- Added Azure documentation
-- Added architecture documentation
-
-### Validated
-- `terraform init`
-- `terraform validate`
-- `terraform plan`
-
-Result:
-
-```text
-No changes.
-Your infrastructure matches the configuration.
-```
-
----
-
-## v1.5.0 - Azure Infrastructure
-
-- Created Azure Resource Group
-- Created Virtual Network
-- Created Network Security Group
-- Deployed Ubuntu Server 24.04
-- Configured SSH key authentication
-- Enabled Auto Shutdown
-- Installed Azure CLI
-- Installed Terraform on Linux VM
-- Configured UFW
-- Configured Fail2Ban
-- Added persistent 1 GB swap
-
----
-
-## v1.0.0 - Microsoft Cloud
-
-- Microsoft Entra ID Security Groups
-- Conditional Access
-- Microsoft Intune Device Enrollment
-- Compliance Policies
-- Application Deployment
-
----
-
-## Roadmap
-
-Upcoming work:
-
-- Remote Terraform Backend
-- Terraform Modules
-- GitHub Actions
-- Azure Monitor
-- PowerShell Automation
 - Azure Key Vault
-
-# Changelog
-
-All notable changes to this project are documented in this file.
-
-The format is based on Keep a Changelog, and this project follows Semantic Versioning where practical.
-
----
-
-# [Unreleased]
-
-## Planned
-
-- GitHub Actions CI/CD
-- Terraform Modules
-- Azure Key Vault integration
 - Azure Monitor
 - Log Analytics Workspace
-- PowerShell Automation
-- Cost Management
-- Azure Policy
 - Azure Backup
-- Microsoft Defender for Cloud
+- Microsoft Graph Automation
+- Microsoft Entra ID Automation
+- Microsoft Intune Automation
+- Pester Unit Testing
+- PSScriptAnalyzer
+- PowerShell Gallery publishing
+
+---
+
+# [1.6.0] - 2026-07-03
+
+## Added
+
+### Enterprise PowerShell Automation
+
+- Created reusable ITAutomation PowerShell module
+- Added module manifest (.psd1)
+- Added enterprise module architecture
+- Added automatic module loading
+- Added advanced PowerShell functions
+- Added comment-based help
+- Added parameter validation
+- Added pipeline support
+- Added SupportsShouldProcess support
+- Added enterprise logging framework
+- Added Start-Backup cmdlet
+- Added Get-DiskReport cmdlet
+- Added Test-PathExists cmdlet
+- Added Get-PCName cmdlet
+- Added Get-DateTime cmdlet
+- Added Get-Greeting cmdlet
+- Added Get-Hello cmdlet
+- Added Write-Log cmdlet
+
+### Documentation
+
+- Added PowerShell coding standards
+- Expanded PowerShell documentation
+
+---
+
+# [1.5.0] - 2026-07-01
+
+## Added
+
+### GitHub Actions
+
+- Implemented GitHub Actions CI workflow
+- Added Terraform formatting validation
+- Added Terraform validation
+- Added Terraform planning
+- Configured OpenID Connect (OIDC) authentication
+- Enabled passwordless Azure authentication
+
+### Terraform
+
+- Completed Compute module
+- Completed Storage module
+- Standardised module variables and outputs
+
+### Documentation
+
+- Expanded project documentation
+- Added deployment screenshots
+- Added GitHub Actions documentation
+
+---
+
+# [1.4.0] - 2026-06-30
+
+## Added
+
+### Terraform Modules
+
+- Refactored Resource Group into reusable module
+- Refactored Networking into reusable module
+- Refactored Storage into reusable module
+- Refactored Compute into reusable module
+
+### Improved
+
+- Simplified root Terraform configuration
+- Migrated Terraform state using terraform state mv
+- Verified zero infrastructure changes after refactoring
 
 ---
 
@@ -110,175 +106,67 @@ The format is based on Keep a Changelog, and this project follows Semantic Versi
 
 ## Added
 
-### Terraform Remote Backend
+### Remote Terraform Backend
 
-- Created Azure Storage Account for Terraform state
-- Created private Azure Blob Storage container
+- Created Azure Storage Account
+- Created Blob Container
 - Configured AzureRM backend
-- Migrated Terraform state from local storage to Azure Blob Storage
-- Enabled Azure AD authentication for backend access
-
-### Terraform
-
-- Added backend.tf
-- Added storage.tf
-- Added Azure Storage Account resource
-- Added Blob Container resource
-
-### Documentation
-
-- Updated README.md
-- Updated terraform-deployment.md
-- Added backend architecture
-- Added backend migration documentation
-- Added remote backend screenshots
-
-### Infrastructure
-
-Terraform now manages:
-
-- Resource Group
-- Virtual Network
-- Subnet
-- Network Security Group
-- Public IP
-- Network Interface
-- Ubuntu Linux Virtual Machine
-- Azure Storage Account
-- Blob Container
+- Migrated Terraform state to Azure Storage
+- Enabled Azure AD authentication
+- Enabled remote state locking
 
 ---
 
-# [1.2.0] - 2026-06-29
+# [1.2.0] - 2026-06-28
 
 ## Added
 
-### Terraform
+### Terraform Infrastructure as Code
 
-- Installed Terraform
-- Configured AzureRM Provider
-- Created modular Terraform configuration
-- Split Terraform configuration into logical files
-- Imported existing Azure infrastructure
-- Added variables
-- Added outputs
-- Validated imported resources
-
-### Azure Resources Imported
-
-- Resource Group
-- Virtual Network
-- Subnet
-- Network Security Group
-- Public IP
-- Network Interface
-- Ubuntu Linux Virtual Machine
+- Created Terraform project structure
+- Configured AzureRM provider
+- Imported existing Azure resources
+- Created reusable Terraform configuration
+- Added variables and outputs
+- Validated imported infrastructure
 
 ---
 
-# [1.1.0] - 2026-06-28
+# [1.1.0] - 2026-06-27
 
 ## Added
 
 ### Azure Infrastructure
 
-- Ubuntu Server 24.04 LTS
-- Virtual Network
-- Public IP
-- Network Security Group
-- SSH Key Authentication
-- Auto Shutdown
-
-### Linux Administration
-
-- Azure CLI
-- Terraform
-- Git
-- UFW Firewall
-- Fail2Ban
-- Persistent Swap
+- Created Resource Group
+- Created Virtual Network
+- Created Network Security Group
+- Created Public IP
+- Created Network Interface
+- Deployed Ubuntu Server 24.04 LTS
+- Configured SSH key authentication
+- Installed Azure CLI
+- Installed Terraform
+- Configured UFW Firewall
+- Installed Fail2Ban
+- Enabled persistent swap
 
 ---
 
-# [1.0.0] - 2026-06-27
+# [1.0.0] - 2026-06-26
 
 ## Initial Release
 
-### Microsoft Entra ID
+### Microsoft Cloud
 
-- Tenant configuration
-- Administrative accounts
-- Security Groups
-
-### Microsoft Intune
-
-- Device Enrollment
-- Configuration Profiles
-- Compliance Policies
-
-### Security
-
+- Microsoft Entra ID
 - Conditional Access
-- Multi-Factor Authentication (MFA)
-- Device Security Policies
+- Microsoft Intune
+- Device Compliance Policies
+- Application Deployment
 
 ### Documentation
 
-- Project architecture
-- Azure deployment
-- Repository structure
-- Technical documentation
+- Initial repository structure
+- Architecture documentation
 - Screenshots
-
----
-
-## Repository Milestones
-
-| Version | Milestone |
-|----------|-----------|
-| 1.0.0 | Enterprise M365 Azure Lab Created |
-| 1.1.0 | Azure Infrastructure & Linux Administration |
-| 1.2.0 | Terraform Infrastructure as Code |
-| 1.3.0 | Remote Terraform Backend |
-| Next | GitHub Actions CI/CD |
-
-
-## Refactored Infrastructure into Terraform Modules
-
-### Added
-- Created reusable Resource Group Terraform module.
-
-### Changed
-- Replaced root Resource Group resource with a module.
-- Updated dependent resources to reference module outputs.
-- Moved Terraform state using `terraform state mv`.
-- Verified no infrastructure changes after refactoring.
-
-## Refactored Networking into Terraform Module
-
-### Added
-- Created reusable networking module.
-
-### Changed
-- Moved Virtual Network into module
-- Moved Subnet into module
-- Moved Network Security Group into module
-- Moved Public IP into module
-- Moved Network Interface into module
-- Updated outputs
-- Migrated Terraform state using `terraform state mv`
-- Verified no infrastructure changes
-
-
-## [Phase 7] - PowerShell Automation
-
-### Added
-
-- Created `Get-SystemReport.ps1` for collecting hardware and operating system information.
-- Created `Backup-Folder.ps1` to automate folder backups.
-- Added timestamped backup folders.
-- Added transcript logging.
-- Added progress reporting with `Write-Progress`.
-- Added backup verification.
-- Added execution time reporting.
-- Refactored the backup utility into reusable PowerShell functions.
