@@ -6,30 +6,47 @@ Creates a backup of files from a source folder to a destination folder.
 
 .DESCRIPTION
 Copies all files and subfolders from the specified source directory to the
-destination directory. If the destination folder does not exist, it will be
+destination directory. If the destination folder does not exist, it is
 created automatically.
 
 .PARAMETER Source
-The source directory containing the files to back up.
+The source folder to back up.
 
 .PARAMETER Destination
-The destination directory where the backup will be stored.
+The destination folder where the backup will be stored.
+
+.PARAMETER LogPath
+Optional path to a log file.
 
 .EXAMPLE
-Start-Backup -Source "C:\Data" -Destination "D:\Backups"
+Start-Backup `
+    -Source "C:\Data" `
+    -Destination "D:\Backups"
 
 .EXAMPLE
-Start-Backup -Source "C:\Data" -Destination "D:\Backups" -Verbose
+Start-Backup `
+    -Source "C:\Data" `
+    -Destination "D:\Backups" `
+    -LogPath "C:\Logs\Backup.log" `
+    -Verbose
 
 .EXAMPLE
-Start-Backup -Source "C:\Data" -Destination "D:\Backups" -WhatIf
+Start-Backup `
+    -Source "C:\Data" `
+    -Destination "D:\Backups" `
+    -WhatIf
 
 .NOTES
 Author : Ajmal Rasouli
 Module : ITAutomation
+Version: 2.0
 #>
 
-    [CmdletBinding(SupportsShouldProcess = $true)]
+    [CmdletBinding(
+        SupportsShouldProcess = $true,
+        ConfirmImpact = 'Medium'
+    )]
+
     param(
 
         [Parameter(Mandatory)]
@@ -43,29 +60,43 @@ Module : ITAutomation
 
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
-        [string]$Destination
+        [string]$Destination,
+
+        [Parameter()]
+        [string]$LogPath
 
     )
 
+    $backupTime = Get-Date
+
     try {
 
-        Write-Verbose "Checking destination folder..."
+        Write-Verbose "Validating destination folder..."
+
+        Write-Log `
+            -Message "Backup started." `
+            -LogPath $LogPath
 
         if (-not (Test-Path $Destination)) {
 
             Write-Verbose "Creating destination folder."
 
-            New-Item `
-                -Path $Destination `
-                -ItemType Directory `
-                -Force | Out-Null
+            if ($PSCmdlet.ShouldProcess($Destination, "Create destination folder")) {
+
+                New-Item `
+                    -ItemType Directory `
+                    -Path $Destination `
+                    -Force | Out-Null
+
+            }
+
         }
 
         $sourcePath = Join-Path $Source '*'
 
-        if ($PSCmdlet.ShouldProcess($Destination, "Copy files from '$Source'")) {
+        Write-Verbose "Copying files..."
 
-            Write-Verbose "Starting backup..."
+        if ($PSCmdlet.ShouldProcess($Destination, "Copy files from '$Source'")) {
 
             Copy-Item `
                 -Path $sourcePath `
@@ -73,27 +104,45 @@ Module : ITAutomation
                 -Recurse `
                 -Force
 
-            Write-Verbose "Backup completed successfully."
+        }
 
-            [PSCustomObject]@{
-                Source      = $Source
-                Destination = $Destination
-                BackupTime  = Get-Date
-                Status      = "Success"
-            }
+        Write-Verbose "Backup completed successfully."
+
+        Write-Log `
+            -Message "Backup completed successfully." `
+            -LogPath $LogPath
+
+        return [PSCustomObject]@{
+
+            Source          = $Source
+            Destination     = $Destination
+            BackupTime      = $backupTime
+            Status          = "Success"
+            ComputerName    = $env:COMPUTERNAME
+            FilesCopied     = (Get-ChildItem -Path $Source -Recurse -File).Count
+
         }
 
     }
     catch {
 
-        Write-Error "Backup failed: $($_.Exception.Message)"
+        Write-Log `
+            -Message "Backup failed: $($_.Exception.Message)" `
+            -Level ERROR `
+            -LogPath $LogPath
 
-        [PSCustomObject]@{
-            Source      = $Source
-            Destination = $Destination
-            BackupTime  = Get-Date
-            Status      = "Failed"
-            Error       = $_.Exception.Message
+        Write-Error $_
+
+        return [PSCustomObject]@{
+
+            Source          = $Source
+            Destination     = $Destination
+            BackupTime      = $backupTime
+            Status          = "Failed"
+            ComputerName    = $env:COMPUTERNAME
+            FilesCopied     = 0
+            Error           = $_.Exception.Message
+
         }
 
     }
