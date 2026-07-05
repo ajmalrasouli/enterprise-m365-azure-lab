@@ -71,6 +71,10 @@ The overall solution architecture is shown below.
 - Azure Storage Account
 - Remote Terraform Backend
 
+### Azure Storage Account
+
+![Azure Storage Account](screenshots/azure-blob-storage-stajmalterraform01.png)
+
 ## Infrastructure as Code
 
 - Modular Terraform configuration
@@ -190,6 +194,10 @@ Infrastructure is managed entirely through Terraform using reusable modules.
 - Infrastructure validation
 - GitHub Actions integration
 
+### Terraform Apply
+
+![Terraform Apply](screenshots/terraform-apply.png)
+
 The Terraform configuration follows Infrastructure as Code best practices, allowing infrastructure to be deployed consistently across environments.
 
 ---
@@ -199,6 +207,10 @@ The Terraform configuration follows Infrastructure as Code best practices, allow
 The project includes a reusable PowerShell module named **ITAutomation**.
 
 Unlike standalone scripts, the module is organised using enterprise PowerShell development practices, making it scalable, reusable, and easy to maintain.
+
+### ITAutomation Module
+
+![PowerShell Module](screenshots/powershell-modules.png)
 
 ## Module Features
 
@@ -228,6 +240,12 @@ Unlike standalone scripts, the module is organised using enterprise PowerShell d
 | Write-Log | Enterprise logging utility |
 | Start-Backup | Performs folder backups with logging and WhatIf support |
 
+
+### Backup Automation
+
+![Start Backup](screenshots/enterprise-Start-Backup.png)
+
+
 ### Module Structure
 
 ```text
@@ -247,6 +265,15 @@ ITAutomation
 ```
 
 The module demonstrates enterprise PowerShell development concepts including reusable architecture, modular design, advanced functions, structured output, and automation best practices.
+
+### Storage Reporting
+
+![Disk Report](screenshots/Get-DiskReport.png)
+
+
+### Parameter Validation
+
+![Validation](screenshots/Test-PathExists.png)
 
 ---
 
@@ -275,6 +302,11 @@ The module is intended to serve as a foundation for future automation covering A
 # Continuous Integration & Deployment (CI/CD)
 
 Infrastructure validation is automated using **GitHub Actions**, ensuring Terraform configurations are validated before deployment.
+
+### GitHub Actions Workflow
+
+![GitHub Actions](screenshots/GitHub-Actions-successful-run.png)
+
 
 ## CI Pipeline
 
@@ -322,6 +354,30 @@ Examples include:
 - Microsoft Entra ID
 - Microsoft Intune device management
 - Conditional Access policies
+
+
+## Azure Infrastructure
+
+![Terraform](screenshots/terraform-apply.png)
+
+---
+
+## GitHub Actions
+
+![GitHub Actions](screenshots/GitHub-Actions-successful-run.png)
+
+---
+
+## Enterprise PowerShell
+
+![Backup](screenshots/Backup-Folder-V3.png)
+
+---
+
+## Storage Reporting
+
+![Disk Report](screenshots/Get-DiskReport.png)
+
 
 These screenshots provide visual evidence of the completed implementation and support the accompanying technical documentation.
 

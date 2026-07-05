@@ -126,15 +126,15 @@ This demonstrates the importance of validating security controls and understandi
 
 ### Conditional Access Policy Overview
 
-![Policy Overview](../screenshots/conditional-access/policy-overview.png)
+![Policy Overview](/screenshots/conditional-access/policy-overview.png)
 
 ### Policy Details
 
-![Policy Details](../screenshots/conditional-access/policy-details.png)
+![Policy Details](/screenshots/conditional-access/policy-details.png)
 
 ### Authentication Methods Registration Campaign
 
-![Registration Campaign](../screenshots/conditional-access/registration-campaign.png)
+![Registration Campaign](/screenshots/conditional-access/registration-campaign.png)
 
 ---
 

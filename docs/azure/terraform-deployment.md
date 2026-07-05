@@ -46,6 +46,11 @@ terraform/
 └── terraform.tfvars
 ```
 
+## Project Folder Structure
+
+![Terraform Folder Structure](/screenshots/terraform-folder-structure.png)
+
+
 ---
 
 # Azure Resources Managed by Terraform
@@ -168,8 +173,6 @@ No changes.
 Your infrastructure matches the configuration.
 ```
 
----
-
 # Azure RBAC
 
 The Storage Account uses Azure AD authentication.
@@ -184,16 +187,42 @@ This allows Terraform to securely access Azure Blob Storage without using Storag
 
 # Screenshots
 
-| Screenshot | Description |
-|------------|-------------|
-| terraform-init.png | Terraform initialization |
-| terraform-import-rg.png | Importing Resource Group |
-| terraform-import-vm.png | Importing Linux Virtual Machine |
-| terraform-plan-clean.png | Successful validation |
-| terraform-init-migrate-state.png | Backend migration |
-| azure-storage-account.png | Storage Account |
-| azure-storage-container.png | Blob Container |
-| azure-storage-tfstate.png | Terraform state stored in Azure |
+### Format and Validate
+
+![Terraform Format and Validate](/screenshots/terraform-fmt-validate.png)
+### Initialize Terraform
+
+![Terraform Init](/screenshots/terraform-init.png)
+### Terraform Plan
+
+Terraform plans the creation of the Storage Account and Blob Container.
+
+![Terraform Plan](/screenshots/terraform-plan-storage.png)
+### Apply the Infrastructure
+
+Terraform creates the Storage Account and Blob Container.
+
+![Terraform Apply](/screenshots/terraform-apply-storage.png)
+### Verify Storage Account
+
+![Storage Account Verification](/screenshots/terraform-verify-storage.png)
+### Storage Account in Azure Portal
+
+![Azure Storage Account](/screenshots/terraform-storage-created-on-azure.png)
+### Migrate Terraform State
+
+![Backend Migration](/screenshots/terraform-migrate-state.png)
+### Terraform State Stored in Azure
+
+![Terraform State Blob](/screenshots/terraform-migrate-state-azure.png)
+### Verify Terraform State
+
+![Terraform State List](/screenshots/terraform-state-list.png)
+### Final Validation
+
+Terraform confirms the deployed Azure infrastructure matches the configuration.
+
+![Terraform Final Validation](/screenshots/terraform-plan.png)
 
 ---
 
